@@ -1,0 +1,50 @@
+<aside class="hidden sm:flex fixed inset-y-0 left-0 z-30 w-64 back-menu b-light border-r lg:static lg:block lg:translate-x-0 transition-transform h-full flex flex-col p-4 space-y-4">
+
+  <!-- Logo -->
+    <img src="https://testisi.suptech.info/wp-content/uploads/2024/01/Capture_d_ecran_2024-01-10_a_23.35.53-removebg-preview.png" class="w-[150px] h-auto;" />
+
+  <!-- Menu -->
+    <nav class="flex flex-col space-y-2">
+
+        <a routerLink="/dashboard" routerLinkActive="font-semibold text-blue-600"
+        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+        <span><i class="ri-dashboard-3-line"></i></span>
+        <span>Tableau de bord</span>
+        </a>
+
+        <a routerLink="/employes" routerLinkActive="font-semibold text-blue-600"
+        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+        <span><i class="ri-group-line"></i></span>
+        <span>Employés</span>
+        </a>
+
+        <a routerLink="/bulletins" routerLinkActive="font-semibold text-blue-600"
+        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+        <span><i class="ri-newspaper-line"></i></span>
+        <span>Bulletins de paie</span>
+        </a>
+
+        <a routerLink="/calendrier" routerLinkActive="font-semibold text-blue-600"
+        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+        <span>📅</span>
+        <span>Calendrier</span>
+        </a>
+
+        <a routerLink="/profil" routerLinkActive="font-semibold text-blue-600"
+        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+        <span>👤</span>
+        <span>Mon profil</span>
+        </a>
+
+    </nav>
+
+    <!-- Admin info -->
+    <div class="fixed bottom-3 flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-8 h-8 rounded-full" />
+        <div>
+        <div class="font-medium">Admin</div>
+        <div class="text-sm text-gray-500">admin salarysync.com</div>
+        </div>
+    </div>
+
+</aside>

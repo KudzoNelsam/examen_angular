@@ -1,0 +1,36 @@
+<div class="p-4">
+  <!-- Titre -->
+    <div class="flex">
+        <h1 class="text-2xl font-bold mb-4">Employés</h1>
+        <button class="ml-auto bg-[#2563eb] text-white rounded-lg px-4 py-2">
+            Ajouter un employé
+        </button>
+    </div>
+
+    <!-- Filtres -->
+    <div class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
+        <input
+            type="text"
+            placeholder="{{list?.champ ?? 'Rechercher par nom, email ou poste…'}}"
+            class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto"
+        />
+        <select class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
+            <option>Tous les départements</option>
+            @for (departement of list?.departements; track $index) {
+                <option value="{{ departement.id }}">{{ departement.nom }}</option>
+            }
+        </select>
+        <select class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
+            <option>Tous les statuts</option>
+            @for (statut of list?.statuts; track $index) {
+                <option value="{{ statut }}">{{ statut }}</option>
+            }
+        </select>
+    </div>
+
+
+    <!-- Grille d'employés -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-4">
+        <app-employee-card *ngFor="let emp of list?.employes" [employe]="emp"></app-employee-card>
+    </div>
+</div>

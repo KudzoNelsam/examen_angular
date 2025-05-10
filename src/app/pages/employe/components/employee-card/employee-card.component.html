@@ -1,0 +1,24 @@
+<div class="border b-light rounded-lg shadow-sm hover:shadow-md transition">
+    <div class="flex items-center p-4 space-x-4 border-b b-light rounded-[5px] w-full">
+        <!-- <img [src]="employe.avatar" alt="avatar" class="w-16 h-16 rounded-full object-cover" /> -->
+        <div>
+        <h2 class="font-semibold text-lg pb-1">{{ employe!.nom }} {{ employe!.prenom }}</h2>
+        <p class="text-sm text-gray-500">{{ employe!.poste }}</p>
+        </div>
+    </div>
+    <div class="p-4 bg-[#f3f4f6]">
+        <div class="space-y-1 text-sm text-gray-600 mb-4">
+            <p class="flex justify-between font-medium"><span>Département:</span> <span>{{ employe!.departement }}</span></p>
+            <p class="flex justify-between font-medium"><span>Salaire annuel:</span> <span>{{ employe!.salaireBase }} CFA</span></p>
+            <p class="flex justify-between font-medium"><span>Date d'embauche:</span> <span>{{ employe!.dateEmbauche }}</span></p>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <span class="text-xs font-medium px-2 py-1 rounded {{employe!.statut == 'Actif' ? 'actif' : (employe!.statut =='Inactif' ? 'inactif' : 'conge')}}">{{ employe!.statut }}</span>
+            <button class="flex items-center text-sm text-blue-600 hover:underline">
+            <i class="ri-file-text-line mr-1"></i> Bulletin
+            </button>
+        </div>
+    </div>
+</div>
+            <!-- <span [ngClass]="employe!.statut == 'Actif' ? 'actif-text' : (employe!.statut =='Inactif' ? 'inactif-text' : 'conge-text conge-bg') ", class="text-xs font-medium px-2 py-1 rounded">{{ employe!.statut }}</span> -->

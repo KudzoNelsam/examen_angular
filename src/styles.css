@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+i{
+    font-size: larger;
+}
+.b-light {
+  border-color: #c0c3c7;
+}
+.back-menu{
+    background-color: #eff6ff;
+}
+.conge{
+    background-color: #fef3c7;
+    color: #9f530e;
+}
+.actif{
+    background-color: #dcfce7;
+    color: #2e6a4c;
+}
+.inactif{
+    background-color: #fee2e2;
+    color: #9c2442;
+}
+
+input:focus,
+select:focus {
+  outline: none; /* enlève le contour bleu */
+  box-shadow: none; /* enlève l'effet de bordure ressortie */
+  background-color: #f0f0f0;
+}

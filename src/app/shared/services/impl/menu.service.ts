@@ -14,6 +14,7 @@ export class MenuService implements IMenuService {
       routerLink: ROUTES.DASHBOARD,
       isVisible: true
     },
+    
     {
       label: 'Employés',
       icon: 'ri-group-line',

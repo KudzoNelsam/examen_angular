@@ -8,7 +8,7 @@
     </div>
 
     <!-- Filtres -->
-    <form (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
+    <div (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
         <input
             (input)="onSearch()"
             [(ngModel)]="champ"
@@ -30,11 +30,11 @@
             }
         </select>
 
-        <button type="submit" class="button sm:hidden">
+        <button (click)="onSearch()" class="button sm:hidden">
             Rechercher
         </button>
 
-    </form>
+    </div>
 
 
     <!-- Grille d'employés -->

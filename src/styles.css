@@ -36,3 +36,10 @@ select:focus {
     padding: 8px 16px;
     margin-left: auto;
 }
+.selected{
+    background-color: #2563eb;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 8px 16px;
+    font-family: "font-semibold";
+}

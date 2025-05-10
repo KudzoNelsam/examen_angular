@@ -5,26 +5,16 @@
 
   <!-- Menu -->
     <nav class="flex flex-col space-y-2">
-
-        <a routerLink="/dashboard" routerLinkActive="font-semibold text-blue-600"
-        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
-        <span><i class="ri-dashboard-3-line"></i></span>
-        <span>Tableau de bord</span>
-        </a>
-
-        <a routerLink="/employes" routerLinkActive="font-semibold text-blue-600"
-        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
-        <span><i class="ri-group-line"></i></span>
-        <span>Employés</span>
-        </a>
-
-        <a routerLink="/bulletins" routerLinkActive="font-semibold text-blue-600"
-        class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
-        <span><i class="ri-newspaper-line"></i></span>
-        <span>Bulletins de paie</span>
-        </a>
-
-        <a routerLink="/calendrier" routerLinkActive="font-semibold text-blue-600"
+        @for (menu of menuItems; track menu.routerLink) {
+            @if (menu.isVisible){
+              <a routerLink="{{menu.routerLink}}" routerLinkActive="{{menu.routerLinkActive}}"
+                class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
+                <span><i class="{{menu.icon}}"></i></span>
+                <span>{{menu.label}}</span>
+              </a>
+          }
+        }
+        <!-- <a routerLink="/calendrier" routerLinkActive="font-semibold text-blue-600"
         class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
         <span>📅</span>
         <span>Calendrier</span>
@@ -34,7 +24,7 @@
         class="flex items-center space-x-2 p-2 rounded hover:bg-gray-100">
         <span>👤</span>
         <span>Mon profil</span>
-        </a>
+        </a> -->
 
     </nav>
 

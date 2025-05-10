@@ -1,0 +1,85 @@
+<div class="bg-white shadow rounded-xl p-6 flex flex-col gap-6">
+    <!-- Informations personnelles -->
+    <div class="flex flex-col md:flex-row gap-6">
+        <div class="flex-1 space-y-4">
+            <div class="flex items-center gap-4">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar"
+                    class="w-16 h-16 rounded-full object-cover" />
+                <div>
+                    <h2 class="text-xl font-bold">{{ employee?.nom }}</h2>
+                    <p class="text-gray-600">{{ employee?.prenom }}</p>
+                    <span class="text-sm text-green-700 bg-green-100 px-2 py-0.5 rounded">Actif</span>
+                </div>
+            </div>
+
+            <div class="space-y-2 text-gray-700">
+                <p><strong>Email :</strong> {{ employee?.email }}</p>
+                <p><strong>Téléphone :</strong> {{ employee?.telephone }}</p>
+                <p><strong>Embauché le :</strong> {{ employee?.dateEmbauche }}</p>
+                <p><strong>Salaire annuel :</strong> {{ employee?.salaireBase | currency:'EUR' }}</p>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-2 space-x-4 items-end">
+            <button
+                class="border px-3 py-1 rounded hover:bg-gray-100 flex items-center gap-2 bg-gray-100 *:hover:bg-gray-200">
+                <svg class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
+                </svg>
+                Contacter
+            </button>
+            <button class="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 flex items-center gap-2">
+                <svg class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 17v-5h1.5a1.5 1.5 0 1 1 0 3H5m12 2v-5h2m-2 3h2M5 10V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1v6M5 19v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1M10 3v4a1 1 0 0 1-1 1H5m6 4v5h1.375A1.627 1.627 0 0 0 14 15.375v-1.75A1.627 1.627 0 0 0 12.375 12H11Z" />
+                </svg>
+
+                Créer un bulletin
+            </button>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div>
+        <div class="border-b flex gap-4 text-sm font-medium">
+            <button class="py-2 px-3 -mb-px border-b-2" [ngClass]="{
+          'border-blue-600 text-blue-600': activeTab === 'bulletins',
+          'border-transparent text-gray-500 hover:text-blue-600': activeTab !== 'bulletins'
+        }" (click)="setActiveTab('bulletins')">Bulletins</button>
+
+            <button class="py-2 px-3 -mb-px border-b-2" [ngClass]="{
+          'border-blue-600 text-blue-600': activeTab === 'remunerations',
+          'border-transparent text-gray-500 hover:text-blue-600': activeTab !== 'remunerations'
+        }" (click)="setActiveTab('remunerations')">Rémunérations</button>
+
+            <button class="py-2 px-3 -mb-px border-b-2" [ngClass]="{
+          'border-blue-600 text-blue-600': activeTab === 'cotisations',
+          'border-transparent text-gray-500 hover:text-blue-600': activeTab !== 'cotisations'
+        }" (click)="setActiveTab('cotisations')">Cotisations</button>
+        </div>
+
+        <!-- Tab contents -->
+        <div class="mt-4">
+            <ng-container [ngSwitch]="activeTab">
+                <div *ngSwitchCase="'bulletins'">
+                    <!-- Liste des bulletins -->
+                    <div class="divide-y text-sm">
+                        <app-pay-item *ngFor="let pay of payHistory" [pay]="pay"></app-pay-item>
+                    </div>
+                </div>
+
+                <div *ngSwitchCase="'remunerations'">
+                    <p class="text-gray-600 italic">Données de rémunération à venir...</p>
+                </div>
+
+                <div *ngSwitchCase="'cotisations'">
+                    <p class="text-gray-600 italic">Données de cotisations à venir...</p>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

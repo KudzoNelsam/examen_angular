@@ -3,15 +3,15 @@ export const PATHS = {
     DASHBOARD: 'home',
     EMPLOYE: {
         LIST: 'employes',
-        DETAIL: 'employe/detail/:id'
+        DETAIL: 'employes/detail/:id'
     },
     DEPARTEMENT: {
         LIST: 'departements',
-        DETAIL: 'departement/detail/:id'
+        DETAIL: 'departements/detail/:id'
     },
     BULLETIN: {
         LIST: 'bulletins',
-        DETAIL: 'bulletin/detail/:id'
+        DETAIL: 'bulletins/detail/:id'
     },
     NOT_FOUND: '**'
 }

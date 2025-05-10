@@ -1,0 +1,26 @@
+<div class="py-2 flex justify-between items-center" *ngIf="pay">
+    <div>
+        <p class="font-medium capitalize">{{ pay.month }}</p>
+        <p class="text-gray-500">Généré le {{ pay.generatedDate }}</p>
+    </div>
+    <div class="flex items-center space-x-3">
+        <div class="text-right">
+            <p class="font-semibold">{{ pay.amount | currency:'EUR' }}</p>
+            <span [ngClass]="{
+      'bg-green-100 text-green-700': pay.status === 'Payé',
+      'bg-blue-100 text-blue-700': pay.status === 'Traité'
+    }" class="text-xs px-2 py-0.5 rounded">
+                {{ pay.status }}
+            </span>
+        </div>
+        <div class="p-2 bg-gray-100 rounded-lg">
+            <button (click)="onDownloadPayslip()">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,27 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
 
+## Installer 
+```bash
+npm i concurrently
+```
+
+## Developpemnt Server
+
+```bash
+npm run start
+```
+
+## Run tailwindcss
+
+```js
+npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
+```
+
+
+
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+
 ## Development server
 
 To start a local development server, run:

@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "start": "concurrently \"ng serve\" \"npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch\"",
     "serve:ssr:BulletinDePaieFront": "node dist/bulletin-de-paie-front/server/server.mjs"
   },
   "private": true,

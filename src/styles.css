@@ -29,3 +29,10 @@ select:focus {
   box-shadow: none; /* enlève l'effet de bordure ressortie */
   background-color: #f0f0f0;
 }
+.button{
+    background-color: #2563eb;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 8px 16px;
+    margin-left: auto;
+}

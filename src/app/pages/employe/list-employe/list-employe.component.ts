@@ -1,24 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { EmployeeCardComponent } from "../components/employee-card/employee-card.component";
-import { Employe } from '../../../shared/models/employe.model';
 import { NgFor } from '@angular/common';
 import { EmployeService } from '../../../shared/services/impl/employe.service';
 import { RequestResponse } from '../../../shared/models/request.response.model';
 import { ListEmploye } from '../../../shared/models/list.employe.model';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-list-employe',
-  imports: [EmployeeCardComponent, NgFor],
+  imports: [EmployeeCardComponent, NgFor, FormsModule],
   templateUrl: './list-employe.component.html',
   styleUrl: './list-employe.component.css'
 })
 export class ListEmployeComponent {
   list? : ListEmploye;
+  champ?: string ;
+  departementId?: number ;
+  statut?: string ;
 
   constructor(private employeService: EmployeService) { }
 
   ngOnInit(): void {
-    this.employeService.getAll(12).subscribe(
+    this.employeService.getAll().subscribe(
       (data: RequestResponse) => {
         this.list = data.results;
       },
@@ -27,4 +31,13 @@ export class ListEmployeComponent {
       }
     );
   }
+    onSearch(){
+      this.employeService.filter(this.champ, this.statut, this.departementId).subscribe(
+        data => {
+          this.list = data.results;
+        },
+        error=> {
+          console.error('Error fetching data:', error);
+        })
+    }
 }

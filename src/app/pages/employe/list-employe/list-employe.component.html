@@ -2,31 +2,39 @@
   <!-- Titre -->
     <div class="flex">
         <h1 class="text-2xl font-bold mb-4">Employés</h1>
-        <button class="ml-auto bg-[#2563eb] text-white rounded-lg px-4 py-2">
+        <button class="button">
             Ajouter un employé
         </button>
     </div>
 
     <!-- Filtres -->
-    <div class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
+    <form (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
         <input
+            (input)="onSearch()"
+            [(ngModel)]="champ"
+            name="nom"
             type="text"
             placeholder="{{list?.champ ?? 'Rechercher par nom, email ou poste…'}}"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto"
         />
-        <select class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
-            <option>Tous les départements</option>
+        <select name="depart" (change)="onSearch()" [(ngModel)]="departementId" class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
+            <option ngValue="">Tous les départements</option>
             @for (departement of list?.departements; track $index) {
-                <option value="{{ departement.id }}">{{ departement.nom }}</option>
+                <option ngValue="{{ departement.id }}">{{ departement.nom }}</option>
             }
         </select>
-        <select class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
-            <option>Tous les statuts</option>
+        <select name="stat" (change)="onSearch()" [(ngModel)]="statut" class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
+            <option ngValue="">Tous les statuts</option>
             @for (statut of list?.statuts; track $index) {
-                <option value="{{ statut }}">{{ statut }}</option>
+                <option ngValue="{{ statut }}">{{ statut }}</option>
             }
         </select>
-    </div>
+
+        <button type="submit" class="button sm:hidden">
+            Rechercher
+        </button>
+
+    </form>
 
 
     <!-- Grille d'employés -->

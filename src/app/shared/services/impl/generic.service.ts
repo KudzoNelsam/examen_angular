@@ -16,7 +16,7 @@ export class GenericService implements IGenericService {
   constructor(protected http: HttpClient) {
 
   }
-  getAll(size=10, page=0): Observable<RequestResponse> {
+  getAll(page=0,size=12): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}`);
   }
   getById(id: number): Observable<RequestResponse> {

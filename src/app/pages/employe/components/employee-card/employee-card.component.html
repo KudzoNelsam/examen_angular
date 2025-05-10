@@ -1,8 +1,9 @@
 <div class="border b-light rounded-lg shadow-sm hover:shadow-md transition">
     <div class="flex items-center p-4 space-x-4 border-b b-light rounded-[5px] w-full">
-        <!-- <img [src]="employe.avatar" alt="avatar" class="w-16 h-16 rounded-full object-cover" /> -->
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="avatar" class="w-16 h-16 rounded-full object-cover" />
         <div>
-        <h2 class="font-semibold text-lg pb-1">{{ employe!.nom }} {{ employe!.prenom }}</h2>
+        <h2 class="font-semibold text-lg pb-1">{{ employe!.nom }}</h2>
+        <h5 class="font-semibold text-gray-500 pb-1">{{ employe!.prenom }}</h5>
         <p class="text-sm text-gray-500">{{ employe!.poste }}</p>
         </div>
     </div>

@@ -18,7 +18,7 @@ export class TopbarComponent {
       (data: RequestResponse) => {
       this.periode = data.results;
       },
-      (      error: any) => {
+      (error: any) => {
         console.error('Error fetching data:', error);
       })
   }

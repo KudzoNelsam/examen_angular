@@ -58,7 +58,7 @@
                                             <table class="min-w-full divide-y divide-gray-200 text-sm text-left">
                                                 <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
                                                     <tr>
-                                                        <th class="px-4 py-3">Employé</th>
+
                                                         <th class="px-4 py-3">Période</th>
                                                         <th class="px-4 py-3">Salaire brut</th>
                                                         <th class="px-4 py-3">Cotisations</th>
@@ -79,9 +79,7 @@
                                                     @for (bulletin of payHistory; track $index) {
 
                                                     <tr>
-                                                        <td class="px-4 py-3 font-semibold">
-                                                            {{ bulletin?.employeNom }} {{ bulletin?.employePrenom }}
-                                                        </td>
+
                                                         <td class="px-4 py-3">
                                                             {{ bulletin?.mois }}
                                                         </td>
@@ -147,7 +145,44 @@
                                     </div>
 
                                     <div *ngSwitchCase="'remunerations'">
-                                        <p class="text-gray-600 italic">Données de rémunération à venir...</p>
+                                        <div class="overflow-x-auto bg-white rounded-xl shadow">
+                                            <table class="min-w-full divide-y divide-gray-200 text-sm text-left">
+                                                <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
+                                                    <tr>
+
+                                                        <th class="px-4 py-3">Libelle</th>
+                                                        <th class="px-4 py-3">Montant</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="divide-y divide-gray-100 text-gray-700">
+                                                    @if (remunerations!.length === 0) {
+                                                    <tr>
+                                                        <td colspan="7" class="text-center py-4">
+                                                            Aucune donnée disponible
+                                                        </td>
+                                                    </tr>
+                                                    }@else {
+
+                                                    @for (remuneration of remunerations; track $index) {
+
+                                                    <tr>
+                                                        <td class="px-4 py-3">
+                                                            {{ remuneration?.renumerationNom }}
+                                                        <td class="px-4 py-3 font-bold">
+                                                            {{ remuneration?.montant | currency:'EUR' }}
+                                                        </td>
+
+                                                    </tr>
+
+                                                    }
+
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
                                     </div>
 
                                     <div *ngSwitchCase="'cotisations'">

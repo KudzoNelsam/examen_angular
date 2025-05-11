@@ -1,8 +1,9 @@
 import { CommonModule, CurrencyPipe, NgClass, NgSwitch } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Bulletin, Employe } from '../../../shared/models/employe.model';
 import { EmployeService } from '../../../shared/services/impl/employe.service';
 import { BulletinService } from '../../../shared/services/impl/bulletin.service';
+import { Remuneration } from '../../../shared/models/remuneration.model';
 
 @Component({
   selector: 'app-employee-profile-card',
@@ -10,11 +11,27 @@ import { BulletinService } from '../../../shared/services/impl/bulletin.service'
   templateUrl: './employee-profile-card.component.html',
   styleUrl: './employee-profile-card.component.css'
 })
-export class EmployeeProfileCardComponent {
+export class EmployeeProfileCardComponent implements OnInit {
+  loadRemunerations() {
+    this.employeService.getWithRemuneration(this.employee!.id).subscribe({
+      next: data => {
+        console.log(data.results);
+
+        this.remunerations = data.results.renumerations;
+        console.log('Remunerations fetched:', this.remunerations);
+      },
+      error: error => {
+        console.error('Error fetching remunerations:', error);
+      }
+    });
+  }
   constructor(private readonly employeService: EmployeService,
     private readonly bulletinService: BulletinService
   ) {
     // Constructor logic if needed
+  }
+  ngOnInit(): void {
+    this.loadRemunerations();
   }
 
   sendBulletin() {
@@ -34,6 +51,8 @@ export class EmployeeProfileCardComponent {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        console.log('Bulletin PDF downloaded successfully');
       },
       error: (error) => {
         console.error('Error fetching bulletin PDF:', error);
@@ -53,6 +72,8 @@ export class EmployeeProfileCardComponent {
 
   ];
 
+  @Input() remunerations: Remuneration[] = [];
+
 
 
   setActiveTab(tab: string) {
@@ -60,6 +81,8 @@ export class EmployeeProfileCardComponent {
   }
 
 }
+
+
 
 
 

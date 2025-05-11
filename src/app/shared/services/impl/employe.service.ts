@@ -15,11 +15,16 @@ export class EmployeService extends GenericService implements IEmployeService {
     this.endPoint = "employes";
     this.baseUrl = `${this.apiUrl}/${this.endPoint}`;
   }
+  getWithRemuneration(id: number): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/remunerations`);
+  }
   getWithBulletins(id: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/bulletins`);
   }
   filter(champ?: string, statut?: string, departementId?: number, page: number = 0, size: number = 12): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}${champ ? '&champ=' + champ : ''}${statut ? '&statut=' + statut : ''}${departementId ? '&departementId=' + departementId : ''}`);
   }
+
+
 
 }

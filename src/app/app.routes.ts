@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { PrincipalComponent } from './shared/layouts/principal/principal.component';
 import { ListEmployeComponent } from './pages/employe/list-employe/list-employe.component';
 import { PATHS } from './routing/app.paths';
-import { EmployesIdComponent } from './pages/employes-id/employes-id.component';
+import { EmployesIdComponent } from './pages/employes-detail/employes-id.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BulletinDePaieComponent } from './pages/bulletin-de-paie/bulletin-de-paie.component';
 

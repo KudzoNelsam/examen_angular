@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 i{
-    font-size: larger;
+    font-size: x-large;
 }
 .b-light {
   border-color: #c0c3c7;
@@ -34,7 +34,27 @@ select:focus {
     color: white;
     border-radius: 0.375rem;
     padding: 8px 16px;
+    font-size: large;
     margin-left: auto;
+}
+.button-clair:hover,
+.button:hover{
+    cursor: pointer;
+}
+.button-clair{
+    border-radius: 5px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #c0c3c7;
+    color: black;
+    font-weight: 400;
+    font-size: large;
+    width: fit-content;
+}
+.button > *,
+.button-clair > *{
+    margin: 0 5px;
 }
 .selected{
     background-color: #2563eb;

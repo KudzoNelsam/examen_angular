@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 import { PrincipalComponent } from './shared/layouts/principal/principal.component';
 import { ListEmployeComponent } from './pages/employe/list-employe/list-employe.component';
 import { PATHS } from './routing/app.paths';
-import { EmployesIdComponent } from './pages/employes-detail/employes-id.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { BulletinDePaieComponent } from './pages/bulletin-de-paie/bulletin-de-paie.component';
+import { EmployeDetailsComponent } from './pages/employe/employe-details/employe-details.component';
+import { BulletinComponent } from './pages/bulletin/bulletin.component';
 
 export const routes: Routes = [
     {
@@ -21,17 +21,17 @@ export const routes: Routes = [
             },
             {
                 path: PATHS.EMPLOYE.DETAIL,
-                component: EmployesIdComponent
+                component: EmployeDetailsComponent
             },
             {
                 path: PATHS.BULLETIN.LIST,
-                component: BulletinDePaieComponent
+                component: BulletinComponent
+            },
+            {
+                path: '',
+                redirectTo: '/home',
+                pathMatch: 'full' // Reload
             },
         ]
-    },
-    {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full' // Reload
     },
 ];

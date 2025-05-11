@@ -1,0 +1,104 @@
+<div class="overflow-x-auto text-sm">
+    <table class="min-w-full hidden sm:table b-light border rounded hover:cursor-pointer">
+        <thead class="border-b b-light">
+            <tr class="bg-gray-100">
+                <th class="p-2 text-left font-bold">Employé</th>
+                <th class="p-2 text-left font-bold">Période</th>
+                <th class="p-2 text-left font-bold">Salaire brut</th>
+                <th class="p-2 text-left font-bold">Cotisations</th>
+                <th class="p-2 text-left font-bold">Salaire net</th>
+                <th class="p-2 text-left font-bold">Mail</th>
+                <th class="p-2 text-left font-bold">Actions</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let bulletin of bulletins" class="border-b b-light">
+                <td class="p-2 font-semibold">{{bulletin!.employeNom}} {{bulletin!.employePrenom}}</td>
+                <td class="p-2">{{bulletin?.mois}}</td>
+                <td class="p-2">{{bulletin?.salaireBrut}} CFA</td>
+                <td class="p-2">{{bulletin?.chargeSalariale}} CFA</td>
+                <td class="p-2 font-bold">{{bulletin?.netAPayer}} CFA</td>
+                <td class="p-2">
+                    <span class="px-2 py-1 text-sm {{bulletin?.sent ? 'actif': 'inactif'}}">
+                        {{bulletin?.sent ? 'Envoyé': 'Non envoyé'}}
+                    </span>
+                </td>
+                <td class="p-2 space-x-2">
+                    <button (click)="download(bulletin)" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
+                        <i class="ri-download-2-line"></i>
+                    </button>
+                    <button (click)="sendMail(bulletin.id)" *ngIf="!bulletin?.sent" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
+                        <i class="ri-send-plane-line"></i>
+                    </button>
+                    <button class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
+                        <i class="ri-delete-bin-2-line"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Version mobile -->
+    <div *ngFor="let bulletin of bulletins " class="sm:hidden space-y-4 mt-4">
+        <div class="border b-light p-4 px-10 rounded-lg shadow-sm">
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Employé :
+                </span> 
+                <span> {{bulletin.employeNom}} {{bulletin.employePrenom}} </span>
+            </p>
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Période :
+                </span>
+                <span> {{bulletin.mois}}</span>
+            </p>
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Salaire brut :
+                </span> 
+                <span> {{bulletin.salaireBrut}} CFA</span>
+            </p>
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Cotisations :
+                </span> 
+                <span> {{bulletin.chargeSalariale}} CFA</span>
+            </p>
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Salaire net :
+                </span> <span class="font-bold">
+                    {{bulletin.netAPayer}} CFA
+                </span>
+            </p>
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Mail :
+                </span> 
+                <span class="px-2 py-1 text-sm {{bulletin?.sent ? 'actif': 'inactif'}}">
+                    {{bulletin?.sent ? 'Envoyé': 'Non envoyé'}}
+                </span>
+            
+            </p>
+            <p class="flex justify-between mt-2">
+                <span class="font-bold">
+                    Actions :
+                </span> 
+                <span>
+                    <button (click)="download(bulletin)" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
+                        <i class="ri-download-2-line"></i>
+                    </button>
+                    <button (click)="sendMail(bulletin.id)" *ngIf="!bulletin?.sent" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
+                        <i class="ri-send-plane-line"></i>
+                    </button>
+                    <button class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
+                        <i class="ri-delete-bin-2-line"></i>
+                    </button>
+                </span>
+            </p>
+        </div>
+
+        <!-- Ajoute d'autres cartes ici -->
+    </div>
+    </div>

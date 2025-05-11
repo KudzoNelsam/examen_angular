@@ -24,7 +24,7 @@ export class MenuService implements IMenuService {
     },
     {
       label: 'Bulletins',
-      icon: 'ri-newspaper-line',
+      icon: 'ri-article-line',
       routerLinkActive: 'selected',
       routerLink: ROUTES.BULLETIN.LIST,
       isVisible: true

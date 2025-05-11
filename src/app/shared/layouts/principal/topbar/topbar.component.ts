@@ -14,12 +14,13 @@ export class TopbarComponent {
   constructor(private layoutService: LayoutService) {
   }
   ngOnInit() {
-    this.layoutService.getPeriode().subscribe(
-      (data: RequestResponse) => {
-      this.periode = data.results;
+    this.layoutService.getPeriode().subscribe({
+      next : (data: RequestResponse) => {
+        this.periode = data.results;
       },
-      (error: any) => {
-        console.error('Error fetching data:', error);
-      })
+      error : (error) => {
+        console.error('Error fetching period:', error);
+      }
+    })
   }
 }

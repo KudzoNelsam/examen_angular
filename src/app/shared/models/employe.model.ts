@@ -1,14 +1,17 @@
+import { Bulletin } from "./bulletin.model";
+import { Remuneration } from "./remuneration.model";
+
 export interface Employe {
     id: number;
+    anciennete: number;
+    matricule: string;
     nom: string;
     prenom: string;
-    matricule: string;
     sexe: string;
-    adresse: string;
-    telephone: string;
     email: string;
+    telephone: string;
+    adresse: string;
     salaireBase: number;
-    anciennete: number;
     poste: string;
     departement: string;
     coefficient: number;
@@ -17,45 +20,21 @@ export interface Employe {
 }
 
 export interface EmployeWithBulletins {
-    id: number;
-    nom: string;
-    prenom: string;
-    matricule: string;
-    sexe: string;
-    adresse: string;
-    telephone: string;
-    email: string;
-    salaireBase: number;
-    anciennete: number;
-    poste: string;
-    departement: string;
-    coefficient: number;
-    statut: string;
-    dateEmbauche: string;
+    employe: Employe;
     bulletins: Bulletin[];
 }
 
-export interface Bulletin {
-    id: number;
-    mois: string;
-    dateDebut: string;
-    dateFin: string;
-    dateGeneration: string;
-    employeNom: string;
-    employePrenom: string;
-    salaireBrut: number;
-    chargeSalariale: number;
-    chargePatronale: number;
-    netImposable: number;
-    netAPayer: number;
-    status: PayStatus;
+export interface EmployeWithRemunerations {
+    employe: Employe;
+    remunerations: Remuneration[];
 }
 
-
-
-
-export enum PayStatus {
-    PAYE = 'payé',
-    EN_ATTENTE = 'en attente',
-    ENVOYE = 'envoyé'
+export interface EmployeWithDatas {
+    employe: Employe;
+    bulletins: Bulletin[];
+    remunerations: Remuneration[];
 }
+    
+
+
+

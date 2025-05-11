@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employe } from '../../shared/models/employe.model';
+import { Bulletin, Employe } from '../../shared/models/employe.model';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EmployeService } from '../../shared/services/impl/employe.service';
 import { EmployeeProfileCardComponent } from "./employee-profile-card/employee-profile-card.component";
@@ -14,6 +14,7 @@ import { EmployeeProfileCardComponent } from "./employee-profile-card/employee-p
 export class EmployesIdComponent implements OnInit {
 
   employeActif?: Employe;
+  bulletins: Bulletin[] = [];
 
 
 
@@ -30,9 +31,10 @@ export class EmployesIdComponent implements OnInit {
     console.log('Employee details page initialized with ID:', employeId);
 
     if (employeId) {
-      this.employeService.getById(Number(employeId)).subscribe({
+      this.employeService.getWithBulletins(Number(employeId)).subscribe({
         next: data => {
-          this.employeActif = data.results;
+          this.employeActif = data.results.employee;
+          this.bulletins = data.results.bulletins;
           console.log('Employee details fetched:', data);
         },
         error: error => {

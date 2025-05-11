@@ -9,14 +9,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class GenericService implements IGenericService {
-  protected baseUrl: string ="";
+  protected baseUrl: string = "";
   protected apiUrl: string = environment.apiUrl;
-  protected endPoint: string ="";
-  
+  protected endPoint: string = "";
+
   constructor(protected http: HttpClient) {
 
   }
-  getAll(page=0,size=12): Observable<RequestResponse> {
+  getAll(page = 0, size = 12): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}`);
   }
   getById(id: number): Observable<RequestResponse> {
@@ -30,5 +30,10 @@ export class GenericService implements IGenericService {
   }
   delete(id: number): Observable<RequestResponse> {
     return this.http.delete<RequestResponse>(`${this.baseUrl}/${id}`);
+  }
+  get(url: string): Observable<RequestResponse> {
+    console.log(`${this.baseUrl}/${url}`);
+
+    return this.http.get<RequestResponse>(`${this.baseUrl}/${url}`);
   }
 }

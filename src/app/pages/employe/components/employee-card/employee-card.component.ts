@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Employe } from '../../../../shared/models/employe.model';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../../../routing/app.paths';
+import { log } from 'console';
 
 @Component({
   selector: 'app-employee-card',
@@ -17,6 +18,6 @@ export class EmployeeCardComponent {
   }
 
   public openDetails() {
-    this.router.navigateByUrl(ROUTES.EMPLOYE.DETAIL(this.employe?.id ?? 0));
+    this.router.navigateByUrl(ROUTES.EMPLOYE.DETAIL(this.employe!.id));
   }
 }

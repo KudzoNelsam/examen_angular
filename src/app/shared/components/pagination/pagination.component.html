@@ -1,0 +1,30 @@
+<div class="flex justify-end mt-4">
+  <nav aria-label="Pagination">
+    <ul class="inline-flex items-center -space-x-px text-sm">
+      <li>
+        <a (click)="onPreviousPage()"
+          class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
+          Précédent
+        </a>
+      </li>
+
+      @for (p of pages; track $index) {
+
+      <li>
+        <a (click)="onPaginate($index)"
+          class="px-3 py-2 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-blue-700 cursor-pointer"
+          [ngClass]="{
+              'bg-blue-500 text-white border-blue-500': $index === currentPage,
+              'text-gray-500 bg-white': $index !== currentPage
+            }">
+          {{ $index + 1 }}
+        </a>
+      </li>
+      }
+
+      <li>
+        <a (click)="onNextPage()"
+          class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
+          Suivant
+        </a>
+      </li>

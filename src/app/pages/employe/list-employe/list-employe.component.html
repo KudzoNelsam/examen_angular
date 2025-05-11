@@ -42,3 +42,7 @@
     <div class="flex justify-end mt-4">
         <app-pagination [pages]="pages" />
     </div>
+    <!-- Aucune donnée -->
+    <div *ngIf="list?.employes?.length == 0" class="flex justify-center items-center h-fit">
+        <p class="text-gray-500">Aucun employé trouvé.</p>
+</div>

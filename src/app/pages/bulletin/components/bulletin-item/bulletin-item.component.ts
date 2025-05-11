@@ -11,14 +11,31 @@ import { BulletinService } from '../../../../shared/services/impl/bulletin.servi
 })
 export class BulletinItemComponent {
   @Input() bulletins?: Bulletin[];
-  @Output() sendMailEvent = new EventEmitter<void>();
+  @Output() notif = new EventEmitter<string>();
+  @Output() refresh = new EventEmitter<void>();
 
   constructor(private bulletinService : BulletinService) { }
 
+  delete(idBulletin: number) {
+    if (confirm('Are you sure you want to delete this bulletin?')) {
+      this.bulletinService.delete(idBulletin).subscribe({
+        next: (response) => {
+          this.refresh.emit();
+          this.notif.emit("Bulletin suprimé avec succès ✔");
+        },
+        error: (error) => {
+          console.error('Error deleting bulletin:', error);
+        }
+      });
+    } 
+  }
+
   sendMail(idBulletin: number) {
+    this.notif.emit("Bulletin en cours d'envoi ...");
     this.bulletinService.sendMail(idBulletin).subscribe({
       next: (response) => {
-        this.sendMailEvent.emit();
+        this.notif.emit("Bulletin envoyé avec succès ✔");
+        this.refresh.emit();
       },
       error: (error) => {
         console.error('Error sending bulletin:', error);
@@ -26,6 +43,7 @@ export class BulletinItemComponent {
     });
   }
   download(bulletin: Bulletin) {
+    this.notif.emit("Bulletin en cours de téléchargement ...");
     this.bulletinService.download(bulletin.id).subscribe({
       next: (data) => {
         const blob = new Blob([data], { type: 'application/pdf' });

@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { EmployeeCardComponent } from "../components/employee-card/employee-card.component";
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { EmployeService } from '../../../shared/services/impl/employe.service';
 import { RequestResponse } from '../../../shared/models/request.response.model';
 import { ListEmploye } from '../../../shared/models/list.employe.model';
@@ -10,7 +10,7 @@ import { PaginationComponent } from '../../../shared/components/pagination/pagin
 
 @Component({
   selector: 'app-list-employe',
-  imports: [EmployeeCardComponent, NgFor, FormsModule, PaginationComponent],
+  imports: [EmployeeCardComponent, NgFor, NgIf, FormsModule, PaginationComponent],
   templateUrl: './list-employe.component.html',
   styleUrl: './list-employe.component.css'
 })

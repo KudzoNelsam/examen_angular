@@ -1,4 +1,5 @@
-<div class="overflow-x-auto text-sm">
+
+<div *ngIf="bulletins?.length! > 0" class="overflow-x-auto text-sm">
     <table class="min-w-full hidden sm:table b-light border rounded hover:cursor-pointer">
         <thead class="border-b b-light">
             <tr class="bg-gray-100">
@@ -30,7 +31,7 @@
                     <button (click)="sendMail(bulletin.id)" *ngIf="!bulletin?.sent" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
                         <i class="ri-send-plane-line"></i>
                     </button>
-                    <button class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
+                    <button (click)="delete(bulletin.id)" class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
                         <i class="ri-delete-bin-2-line"></i>
                     </button>
                 </td>
@@ -92,7 +93,7 @@
                     <button (click)="sendMail(bulletin.id)" *ngIf="!bulletin?.sent" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
                         <i class="ri-send-plane-line"></i>
                     </button>
-                    <button class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
+                    <button (click)="delete(bulletin.id)" class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
                         <i class="ri-delete-bin-2-line"></i>
                     </button>
                 </span>
@@ -101,4 +102,7 @@
 
         <!-- Ajoute d'autres cartes ici -->
     </div>
-    </div>
+</div>
+<div *ngIf="bulletins?.length! == 0" class="flex justify-center items-center h-fit">
+    <p class="text-gray-500">Aucun bulletin trouvé.</p>
+</div>

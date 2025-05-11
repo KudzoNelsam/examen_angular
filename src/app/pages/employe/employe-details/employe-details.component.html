@@ -1,3 +1,7 @@
+<div *ngIf="notif" class="fixed top-17 m-auto right-5 bg-gray-600 text-white px-4 py-2 rounded shadow-lg transition-opacity duration-500"
+>
+  {{notifConent}}
+</div>
 <div class="p-4">
     <!-- Bouton retour -->
     <a [routerLink]="routes.EMPLOYE.LIST" class="button-clair mb-4">
@@ -65,28 +69,11 @@
             <ng-container [ngSwitch]="activeTab">
 
                 <div *ngSwitchCase="'bulletins'">
-                    <app-bulletin-item (sendMailEvent)="refresh(employe?.employe!.id)"  *ngFor="let bulletin of employe?.bulletins" [bulletins]="employe?.bulletins" />
+                    <app-bulletin-item (refresh)="refresh()" (notif)="showNotif($event)" [bulletins]="employe?.bulletins" />
                 </div>
 
                 <div *ngSwitchCase="'remunerations'">
-                    <div class="overflow-x-auto text-sm b-light border rounded">
-                        <table class="min-w-full">
-                            <thead class="border-b b-light">
-                                <tr class="bg-gray-100">
-                                    <th class="p-2 text-left font-bold">Type</th>
-                                    <th class="p-2 text-left font-bold">Montant</th>
-                                    <th class="p-2 text-left font-bold">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of employe?.remunerations" class="border-b b-light">
-                                    <td class="p-2">{{ item.remunerationNom }}</td>
-                                    <td class="p-2">{{ item.montant }}</td>
-                                    <td class="p-2"><i class="ri-pencil-line"></i></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <app-remuneration-item (refresh)="refresh()" (notif)="showNotif($event)" [remunerations]="employe?.remunerations" />
                 </div>
             </ng-container>
 

@@ -1,5 +1,5 @@
 import { Bulletin } from "./bulletin.model";
-import { Remuneration } from "./remuneration.model";
+import { EmployeRemuneration } from "./employe.remuneration.model";
 
 export interface Employe {
     id: number;
@@ -26,13 +26,13 @@ export interface EmployeWithBulletins {
 
 export interface EmployeWithRemunerations {
     employe: Employe;
-    remunerations: Remuneration[];
+    remunerations: EmployeRemuneration[];
 }
 
 export interface EmployeWithDatas {
     employe: Employe;
     bulletins: Bulletin[];
-    remunerations: Remuneration[];
+    remunerations: EmployeRemuneration[];
 }
     
 

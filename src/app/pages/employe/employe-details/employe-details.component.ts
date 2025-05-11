@@ -1,4 +1,4 @@
-import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 import { Component } from '@angular/core';
 import { ROUTES } from '../../../routing/app.paths';
 import { ActivatedRoute, RouterModule } from '@angular/router';
@@ -7,14 +7,18 @@ import { EmployeService } from '../../../shared/services/impl/employe.service';
 import { LayoutService } from '../../../shared/services/impl/layout.service';
 import { PeriodeBulletinResponse } from '../../../shared/models/layout.model';
 import { BulletinItemComponent } from "../../bulletin/components/bulletin-item/bulletin-item.component";
+import { RemunerationItemComponent } from "../../remuneration/components/remuneration-item/remuneration-item.component";
 
 @Component({
   selector: 'app-employe-details',
-  imports: [NgSwitch, NgSwitchCase, NgFor, RouterModule, BulletinItemComponent],
+  imports: [NgSwitch, NgSwitchCase, NgIf, RouterModule, BulletinItemComponent, RemunerationItemComponent],
   templateUrl: './employe-details.component.html',
   styleUrl: './employe-details.component.css'
 })
 export class EmployeDetailsComponent {
+  messageEnvoye: boolean = false;
+  notif: boolean = false;
+  notifConent: string = '';
   periode?: PeriodeBulletinResponse;
   routes = ROUTES
   activeTab: string = 'bulletins';
@@ -39,6 +43,7 @@ export class EmployeDetailsComponent {
     this.employeService.generateBulletin(this.employe!.employe.id,id).subscribe({
       next: (data) => {
         this.refresh();
+        this.activeTab = 'bulletins'
       },
       error: (error) => {
         console.error('Error generating bulletin:', error);
@@ -60,5 +65,13 @@ export class EmployeDetailsComponent {
   switchTab(tab: string) {
     this.activeTab = tab;
     this.refresh();
+  }
+
+  showNotif(content: string) {
+    this.notifConent = content;
+    this.notif = true;
+    setTimeout(() => {
+      this.notif = false;
+    }, 5000);
   }
 }

@@ -34,10 +34,16 @@ export class EmployeeProfileCardComponent implements OnInit {
     this.loadRemunerations();
   }
 
-  sendBulletin() {
-    // Logic to send the bulletin
-    console.log('Sending bulletin...');
-
+  sendBulletin(idBulletin: number) {
+    console.log('Sending bulletin with ID:', idBulletin);
+    this.bulletinService.sendMail(idBulletin).subscribe({
+      next: (response) => {
+        console.log('Bulletin sent successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error sending bulletin:', error);
+      }
+    });
   }
   openBulletin(bulletin: Bulletin) {
     console.log('Opening bulletin:', bulletin);

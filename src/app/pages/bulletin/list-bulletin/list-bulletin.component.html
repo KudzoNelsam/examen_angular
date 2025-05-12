@@ -1,0 +1,36 @@
+<app-notif *ngIf="notif" [notifContent]="notifContent" />
+<div class="p-4">
+    <!-- Titre -->
+    <div class="flex">
+        <h1 class="text-2xl font-bold mb-4">Bulletins de paie</h1>
+        <button class="button">
+            Ajouter un employé
+        </button>
+    </div>
+
+    <!-- Filtres -->
+    <div (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
+        <input (input)="onSearch()" [(ngModel)]="champ" name="nom" type="text"
+            placeholder="Rechercher par nom, email ou poste…"
+            class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto" />
+
+        <button (click)="onSearch()" class="button sm:hidden">
+            Rechercher
+        </button>
+
+    </div>
+
+
+    <!-- Grille d'employés -->
+    <div *ngIf="list?.length! > 0">
+            <app-bulletin-item (refresh)="refresh()" (notif)="showNotif($event)" [bulletins]="list"/>
+        <!-- Pagination -->
+        <div class="flex justify-end my-4">
+            <app-pagination [pagination]="pagination" (onPageChange)="onPageChange($event)" />
+        </div>
+    </div>
+    <!-- Aucune donnée -->
+</div>
+<div *ngIf="list?.length == 0" class="flex justify-center items-center h-fit">
+    <p class="text-gray-500">Aucun bulletin trouvé.</p>
+</div>

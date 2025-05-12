@@ -25,30 +25,17 @@ export class ListEmployeComponent {
   constructor(private employeService: EmployeService) { }
 
   ngOnInit(): void {
-    this.onRefresh();
+    this.refresh();
   }
   onSearch() {
-    this.employeService.filter(this.champ, this.statut, this.departementId).subscribe({
-      next: (data: RequestResponse) => {
-        this.list = data.results;
-        this.pagination = {
-          currentPage: data.currentPage!,
-          hasNextPage: data.hasNextPage!,
-          hasPreviousPage: data.hasPreviousPage!,
-          pages: data.pages!
-        }
-      },
-      error: (error) => {
-        console.error('Error refreshing employee list:', error);
-      }
-    });
+    this.refresh();
   }
   onPageChange(page: number) {
-    this.onRefresh(page);
+    this.refresh(page);
   }
 
-  onRefresh(page: number = 0) {
-    this.employeService.getAll(page).subscribe({
+  refresh(page: number = 0) {
+    this.employeService.filter(this.champ, this.statut, this.departementId,page).subscribe({
       next: (data: RequestResponse) => {
         this.list = data.results;
         this.pagination = {

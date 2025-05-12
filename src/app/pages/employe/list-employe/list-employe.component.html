@@ -10,7 +10,7 @@
     <!-- Filtres -->
     <div (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
         <input (input)="onSearch()" [(ngModel)]="champ" name="nom" type="text"
-            placeholder="{{list?.champ ?? 'Rechercher par nom, email ou poste…'}}"
+            placeholder="Rechercher par nom, email ou poste…"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto" />
         <select name="depart" (change)="onSearch()" [(ngModel)]="departementId"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">

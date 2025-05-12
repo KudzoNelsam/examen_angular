@@ -15,6 +15,9 @@ export class BulletinService extends GenericService implements IBulletinService 
     this.endPoint = "bulletins";
     this.baseUrl = `${this.apiUrl}/${this.endPoint}`;
   }
+  filter(champ?: string, page: number = 0, size: number = 12): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}${champ ? '&champ=' + champ : ''}`);
+  }
 
   download(bulletinId: number): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/${bulletinId}/pdf`, { responseType: 'blob' });

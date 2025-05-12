@@ -5,6 +5,7 @@ import { PATHS } from './routing/app.paths';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EmployeDetailsComponent } from './pages/employe/employe-details/employe-details.component';
 import { BulletinComponent } from './pages/bulletin/bulletin.component';
+import { ListBulletinComponent } from './pages/bulletin/list-bulletin/list-bulletin.component';
 
 export const routes: Routes = [
     {
@@ -25,7 +26,7 @@ export const routes: Routes = [
             },
             {
                 path: PATHS.BULLETIN.LIST,
-                component: BulletinComponent
+                component: ListBulletinComponent
             },
             {
                 path: '',

@@ -32,7 +32,6 @@ export class GenericService implements IGenericService {
     return this.http.delete<RequestResponse>(`${this.baseUrl}/${id}`);
   }
   get(url: string): Observable<RequestResponse> {
-    console.log(`${this.baseUrl}/${url}`);
 
     return this.http.get<RequestResponse>(`${this.baseUrl}/${url}`);
   }

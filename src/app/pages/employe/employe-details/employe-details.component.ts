@@ -8,17 +8,17 @@ import { LayoutService } from '../../../shared/services/impl/layout.service';
 import { PeriodeBulletinResponse } from '../../../shared/models/layout.model';
 import { BulletinItemComponent } from "../../bulletin/components/bulletin-item/bulletin-item.component";
 import { RemunerationItemComponent } from "../../remuneration/components/remuneration-item/remuneration-item.component";
+import { NotifComponent } from "../../../shared/components/notif/notif.component";
 
 @Component({
   selector: 'app-employe-details',
-  imports: [NgSwitch, NgSwitchCase, NgIf, RouterModule, BulletinItemComponent, RemunerationItemComponent],
+  imports: [NgSwitch, NgSwitchCase, NgIf, RouterModule, BulletinItemComponent, RemunerationItemComponent, NotifComponent],
   templateUrl: './employe-details.component.html',
   styleUrl: './employe-details.component.css'
 })
 export class EmployeDetailsComponent {
-  messageEnvoye: boolean = false;
   notif: boolean = false;
-  notifConent: string = '';
+  notifContent: string = '';
   periode?: PeriodeBulletinResponse;
   routes = ROUTES
   activeTab: string = 'bulletins';
@@ -68,7 +68,7 @@ export class EmployeDetailsComponent {
   }
 
   showNotif(content: string) {
-    this.notifConent = content;
+    this.notifContent = content;
     this.notif = true;
     setTimeout(() => {
       this.notif = false;

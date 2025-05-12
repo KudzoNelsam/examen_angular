@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LayoutService } from './layout.service';
+import { PeriodeService } from './periode.service';
 
-describe('LayoutService', () => {
-  let service: LayoutService;
+describe('PeriodeService', () => {
+  let service: PeriodeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LayoutService);
+    service = TestBed.inject(PeriodeService);
   });
 
   it('should be created', () => {

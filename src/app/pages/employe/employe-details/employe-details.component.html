@@ -1,4 +1,5 @@
 <app-notif *ngIf="notif" [notifContent]="notifContent"/>
+<app-popup *ngIf="popup" (hide)="hidePopup()" (selected)="generateBulletin($event)"/>
 <div class="p-4">
     <!-- Bouton retour -->
     <a [routerLink]="routes.EMPLOYE.LIST" class="button-clair mb-4">
@@ -19,7 +20,7 @@
                 <i class="ri-mail-line"></i>
                 <span>Contacter</span>
             </button>
-            <button (click)="generateBulletin()" class="button">
+            <button (click)="showPopup()" class="button">
                 <i class="ri-article-line"></i>
                 <span>Créer un bulletin</span>
             </button>

@@ -1,8 +1,8 @@
 import { Observable } from "rxjs";
 import { RequestResponse } from "../models/request.response.model";
 
-export interface ILayoutService {
+export interface IPeriodeService {
 
-    getPeriode(): Observable<RequestResponse>;
+    getActualPeriode(): Observable<RequestResponse>;
 
 }

@@ -1,12 +1,14 @@
 <app-notif *ngIf="notif" [notifContent]="notifContent" />
+<app-popup *ngIf="popup" (hide)="hidePopup()" (selected)="generateAll($event)" />
 <div class="p-4">
     <!-- Titre -->
     <div class="flex">
         <h1 class="text-2xl font-bold mb-4">Bulletins de paie</h1>
-        <button (click)="generateAll()" class="button">
+        <button (click)="showPopup()" class="button">
             Générer tous les bulletins
         </button>
     </div>
+    
 
     <!-- Filtres -->
     <div class="grid gap-4 md:grid-cols-3 mb-4 mt-4">

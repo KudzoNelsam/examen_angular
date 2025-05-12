@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { PeriodeBulletinResponse } from '../../../models/layout.model';
-import { LayoutService } from '../../../services/impl/layout.service';
+import { PeriodeService } from '../../../services/impl/periode.service';
 import { RequestResponse } from '../../../models/request.response.model';
 
 @Component({
@@ -11,10 +11,10 @@ import { RequestResponse } from '../../../models/request.response.model';
 })
 export class TopbarComponent {
   periode?: PeriodeBulletinResponse;
-  constructor(private layoutService: LayoutService) {
+  constructor(private periodeService: PeriodeService) {
   }
   ngOnInit() {
-    this.layoutService.getPeriode().subscribe({
+    this.periodeService.getActualPeriode().subscribe({
       next : (data: RequestResponse) => {
         this.periode = data.results;
       },

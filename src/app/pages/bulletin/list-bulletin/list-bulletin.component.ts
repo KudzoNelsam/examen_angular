@@ -9,52 +9,54 @@ import { PaginationComponent } from "../../../shared/components/pagination/pagin
 import { BulletinItemComponent } from "../components/bulletin-item/bulletin-item.component";
 import { NotifComponent } from "../../../shared/components/notif/notif.component";
 import { EmployeService } from '../../../shared/services/impl/employe.service';
+import { PopupComponent } from "../components/popup/popup.component";
 import { PeriodeBulletinResponse } from '../../../shared/models/layout.model';
-import { LayoutService } from '../../../shared/services/impl/layout.service';
 
 @Component({
   selector: 'app-list-bulletin',
-  imports: [FormsModule, NgIf, PaginationComponent, BulletinItemComponent, NotifComponent],
+  imports: [FormsModule, NgIf, PaginationComponent, BulletinItemComponent, NotifComponent, PopupComponent],
   templateUrl: './list-bulletin.component.html',
   styleUrl: './list-bulletin.component.css'
 })
 export class ListBulletinComponent {
   notif: boolean = false;
+  popup: boolean = false;
   notifContent: string = '';
   list?: Bulletin[];
   champ?: string;
   pagination?: Pagination;
-  periode?: PeriodeBulletinResponse;
   
 
   constructor(private bulletinService: BulletinService, 
-    private employeService : EmployeService,
-    private layoutService : LayoutService) { }
+    private employeService : EmployeService) { }
 
   ngOnInit(): void {
     this.refresh();
-    this.layoutService.getPeriode().subscribe({
-      next: (data) => {
-        this.periode = data.results;
-      },
-      error: (error) => {
-        console.error('Error fetching period:', error);
-      }
-    });
   }
 
-  generateAll() {
-    alert("Cette action va générer tous les bulletins de la période en cours");
-    this.showNotif("Bulletins en cours de génération ... ⏳");
-    this.employeService.generateAll(this.periode?.id!).subscribe({
-      next: (data) => {
-        this.refresh();
-        this.showNotif("Bulletins générés avec succès ✔");
-      },
-      error: (error) => {
-        console.error('Error generating all bulletins:', error);
-      }
-    });
+  showPopup(){
+    this.popup = true;
+  }
+  hidePopup(){
+    this.popup = false;
+  }
+
+  generateAll(periode : PeriodeBulletinResponse) {
+    this.hidePopup();
+    if (periode) {
+      this.showNotif(`Bulletins de ${periode.mois} en cours de génération ... ⏳`);
+      this.employeService.generateAll(periode.id).subscribe({
+        next: (data) => {
+          this.refresh();
+          this.showNotif("Bulletins générés avec succès ✔");
+        },
+        error: (error) => {
+          console.error('Error generating all bulletins:', error);
+        }
+      });
+    }else {
+      this.showNotif("Aucune période sélectionnée ❌");
+    }
   }
   onSearch() {
     this.refresh();

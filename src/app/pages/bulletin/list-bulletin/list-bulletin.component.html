@@ -3,13 +3,13 @@
     <!-- Titre -->
     <div class="flex">
         <h1 class="text-2xl font-bold mb-4">Bulletins de paie</h1>
-        <button class="button">
-            Ajouter un employé
+        <button (click)="generateAll()" class="button">
+            Générer tous les bulletins
         </button>
     </div>
 
     <!-- Filtres -->
-    <div (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
+    <div class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
         <input (input)="onSearch()" [(ngModel)]="champ" name="nom" type="text"
             placeholder="Rechercher par nom, email ou poste…"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto" />
@@ -17,13 +17,12 @@
         <button (click)="onSearch()" class="button sm:hidden">
             Rechercher
         </button>
-
     </div>
 
 
     <!-- Grille d'employés -->
     <div *ngIf="list?.length! > 0">
-            <app-bulletin-item (refresh)="refresh()" (notif)="showNotif($event)" [bulletins]="list"/>
+        <app-bulletin-item (refresh)="refresh()" (notif)="showNotif($event)" [bulletins]="list"/>
         <!-- Pagination -->
         <div class="flex justify-end my-4">
             <app-pagination [pagination]="pagination" (onPageChange)="onPageChange($event)" />

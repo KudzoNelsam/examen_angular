@@ -15,6 +15,9 @@ export class EmployeService extends GenericService implements IEmployeService {
     this.endPoint = "employes";
     this.baseUrl = `${this.apiUrl}/${this.endPoint}`;
   }
+  generateAll(periode: number): Observable<RequestResponse> {
+    return this.http.post<RequestResponse>(`${this.baseUrl}/bulletin?periodeId=${periode}`,null);
+  }
   generateBulletin(id: number, periode: number): Observable<RequestResponse> {
     return this.http.post<RequestResponse>(`${this.baseUrl}/${id}/bulletin?periodeId=${periode}`,null);
   }

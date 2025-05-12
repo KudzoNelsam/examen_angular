@@ -45,6 +45,7 @@ export class ListBulletinComponent {
 
   generateAll() {
     alert("Cette action va générer tous les bulletins de la période en cours");
+    this.showNotif("Bulletins en cours de génération ... ⏳");
     this.employeService.generateAll(this.periode?.id!).subscribe({
       next: (data) => {
         this.refresh();

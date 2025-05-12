@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { IEmployeRemunerationService } from '../IEmployeRemunerationService';
 import { Observable } from 'rxjs';
-import { EmployeRemuneration } from '../../models/employe.remuneration.model';
 import { RequestResponse } from '../../models/request.response.model';
 import { HttpClient } from '@angular/common/http';
 import { EmployeRemunerationRequest } from '../../models/requests/employe.remuneration.model';
@@ -17,11 +16,12 @@ export class EmployeRemunerationService extends GenericService implements IEmplo
     super(http);
     this.endPoint = "addRenumeration";
     this.baseUrl = `${this.apiUrl}/${this.endPoint}`;
+    this.size = 5;
   }
   updateRemuneration(remunerationId : number, remuneration: EmployeRemunerationUpdateRequest): Observable<RequestResponse> {
-    return this.http.patch<RequestResponse>(`${this.baseUrl}/$remunerationId}`, remuneration);
+    return this.http.patch<RequestResponse>(`${this.baseUrl}/${remunerationId}`, remuneration);
   }
-  addToEmploye(remuneration: EmployeRemuneration): Observable<RequestResponse> {
+  addToEmploye(remuneration: EmployeRemunerationRequest): Observable<RequestResponse> {
     return this.http.post<RequestResponse>(`${this.baseUrl}`, remuneration);
   }
 }

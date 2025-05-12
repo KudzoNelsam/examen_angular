@@ -71,7 +71,7 @@
                 </div>
 
                 <div *ngSwitchCase="'remunerations'">
-                    <app-remuneration-item (refresh)="refresh()" (notif)="showNotif($event)" [remunerations]="employe?.remunerations" />
+                    <app-remuneration-item (refresh)="refresh()" (notif)="showNotif($event)" [employeId]="employe?.employe!.id" [remunerations]="employe?.remunerations" />
                 </div>
             </ng-container>
 

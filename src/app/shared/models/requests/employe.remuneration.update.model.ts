@@ -1,3 +1,3 @@
 export interface EmployeRemunerationUpdateRequest {
-    montant: string;
+    montant: number;
 }

@@ -4,9 +4,9 @@
 <div class="z-50 bg-white p-6 rounded shadow-lg inset-0 fixed h-fit sm:w-[30%] w-[80%] m-auto">
 
     <button (click)="hidePopup()" class="absolute top-2 right-2 text-gray-500 hover:text-black">✖</button>
-    <h2 class="text-gray-500 text-center mb-2">Veuillez selectionner le mois</h2>
-    <select [(ngModel)]="periode" class="border p-2 rounded w-full mb-4">
-        <option *ngFor="let periode of periodes" [ngValue]="periode">{{periode.mois}}</option>
+
+    <select [(ngModel)]="remuneration" class="border p-2 rounded w-full mb-4">
+        <option *ngFor="let remuneration of remunerations" [ngValue]="remuneration">{{remuneration.nom}}</option>
     </select>
 
     <button (click)="validate()" class="button">

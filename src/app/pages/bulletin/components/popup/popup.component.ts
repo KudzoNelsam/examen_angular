@@ -27,14 +27,6 @@ export class PopupComponent {
         console.error('Error fetching period:', error);
       }
     });
-    this.periodeService.getActualPeriode().subscribe({
-      next: (data) => {
-        this.periode = data.results;
-      },
-      error: (error) => {
-        console.error('Error fetching period:', error);
-      }
-    });
   }
 
   hidePopup() {

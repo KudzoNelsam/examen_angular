@@ -12,12 +12,14 @@ export class GenericService implements IGenericService {
   protected baseUrl: string = "";
   protected apiUrl: string = environment.apiUrl;
   protected endPoint: string = "";
+  protected size: number = 10;
+  protected page: number = 0;
 
   constructor(protected http: HttpClient) {
 
   }
-  getAll(page = 0, size = 12): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}`);
+  getAll(): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}?size=${this.size}&page=${this.page}`);
   }
   getById(id: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}/${id}`);
@@ -32,7 +34,6 @@ export class GenericService implements IGenericService {
     return this.http.delete<RequestResponse>(`${this.baseUrl}/${id}`);
   }
   get(url: string): Observable<RequestResponse> {
-
     return this.http.get<RequestResponse>(`${this.baseUrl}/${url}`);
   }
 }

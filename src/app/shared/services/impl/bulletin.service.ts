@@ -14,8 +14,9 @@ export class BulletinService extends GenericService implements IBulletinService 
     super(http);
     this.endPoint = "bulletins";
     this.baseUrl = `${this.apiUrl}/${this.endPoint}`;
+    this.size = 10;
   }
-  filter(champ?: string, page: number = 0, size: number = 12): Observable<RequestResponse> {
+  filter(champ?: string, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}${champ ? '&champ=' + champ : ''}`);
   }
 

@@ -1,5 +1,7 @@
+<app-select-renumeration *ngIf="select" [employeId]="employeId" (hide)="hideSelect()" (selected)="showSaisie($event)" />
+<app-saisie-montant *ngIf="saisie" (hide)="hideSaisie()" (add)="addRemuneration($event)" />
 <div class="flex justify-between items-center mb-4">
-    <button (click)="addRemuneration()" class="ml-auto button-clair">
+    <button (click)="selectRemuneration()" class="ml-auto button-clair">
         <span>Ajouter</span>
     </button>
 </div>
@@ -17,10 +19,10 @@
                 <td class="p-2">{{ item.remunerationNom }}</td>
                 <td class="p-2">{{ item.montant }}</td>
                 <td class="p-2">
-                    <button (click)="remove(item.id)" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
+                    <button *ngIf="item.remunerationNom != 'Prime d\'ancienneté'" (click)="modifier(item.id)" class="p-1 hover:bg-[#f3f4f6] rounded hover:cursor-pointer">
                         <i class="ri-pencil-line"></i>
                     </button>
-                    <button *ngIf="item.remunerationNom != 'SALAIRE DE BASE'" (click)="remove(item.id)" class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
+                    <button *ngIf="item.remunerationNom != 'SALAIRE DE BASE' && item.remunerationNom != 'Prime d\'ancienneté'" (click)="remove(item.id)" class="p-1 hover:bg-[#fee2e2] hover:text-[#9c2442] rounded hover:cursor-pointer">
                         <i class="ri-delete-bin-2-line"></i>
                     </button>
                 </td>

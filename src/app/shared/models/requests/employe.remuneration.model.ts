@@ -1,5 +1,5 @@
 export interface EmployeRemunerationRequest {
-    montant: string;
+    montant: number;
     remunerationId: number;
     employeId: number;
 }

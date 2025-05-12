@@ -22,7 +22,6 @@ i{
     background-color: #fee2e2;
     color: #9c2442;
 }
-
 input:focus,
 select:focus {
   outline: none; /* enlève le contour bleu */

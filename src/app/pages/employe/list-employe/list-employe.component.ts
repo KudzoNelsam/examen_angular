@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { EmployeeCardComponent } from "../components/employee-card/employee-card.component";
 import { NgFor, NgIf } from '@angular/common';
 import { EmployeService } from '../../../shared/services/impl/employe.service';
@@ -22,7 +22,7 @@ export class ListEmployeComponent {
   statut?: string;
   pagination?: Pagination;
 
-  constructor(private employeService: EmployeService) { }
+  constructor(private readonly employeService: EmployeService) { }
 
   ngOnInit(): void {
     this.refresh();
@@ -35,7 +35,7 @@ export class ListEmployeComponent {
   }
 
   refresh(page: number = 0) {
-    this.employeService.filter(this.champ, this.statut, this.departementId,page).subscribe({
+    this.employeService.filter(this.champ, this.statut, this.departementId, page).subscribe({
       next: (data: RequestResponse) => {
         this.list = data.results;
         this.pagination = {

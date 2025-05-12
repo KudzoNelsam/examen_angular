@@ -35,14 +35,17 @@
 
 
     <!-- Grille d'employés -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-4">
-        <app-employee-card *ngFor="let emp of list?.employes" [employe]="emp"></app-employee-card>
-    </div>
-    <!-- Pagination -->
-    <div class="flex justify-end mt-4">
-        <app-pagination [pages]="pages" />
+    <div *ngIf="list?.employes?.length! > 0">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-4">
+            <app-employee-card *ngFor="let emp of list?.employes" [employe]="emp"></app-employee-card>
+        </div>
+        <!-- Pagination -->
+        <div class="flex justify-end my-4">
+            <app-pagination [pagination]="pagination" (onPageChange)="onPageChange($event)" />
+        </div>
     </div>
     <!-- Aucune donnée -->
-    <div *ngIf="list?.employes?.length == 0" class="flex justify-center items-center h-fit">
-        <p class="text-gray-500">Aucun employé trouvé.</p>
+</div>
+<div *ngIf="list?.employes?.length == 0" class="flex justify-center items-center h-fit">
+    <p class="text-gray-500">Aucun employé trouvé.</p>
 </div>

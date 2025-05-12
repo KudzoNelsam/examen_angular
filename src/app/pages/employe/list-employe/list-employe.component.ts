@@ -6,6 +6,7 @@ import { RequestResponse } from '../../../shared/models/request.response.model';
 import { ListEmploye } from '../../../shared/models/list.employe.model';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
+import { Pagination } from '../../../shared/models/pagination.model';
 
 
 @Component({
@@ -19,27 +20,47 @@ export class ListEmployeComponent {
   champ?: string;
   departementId?: number;
   statut?: string;
-  pages: number[] = [];
+  pagination?: Pagination;
 
   constructor(private employeService: EmployeService) { }
 
   ngOnInit(): void {
-    this.employeService.getAll().subscribe(
-      (data: RequestResponse) => {
-        this.list = data.results;
-      },
-      (error: any) => {
-        console.error('Error fetching data:', error);
-      }
-    );
+    this.onRefresh();
   }
   onSearch() {
-    this.employeService.filter(this.champ, this.statut, this.departementId).subscribe(
-      data => {
+    this.employeService.filter(this.champ, this.statut, this.departementId).subscribe({
+      next: (data: RequestResponse) => {
         this.list = data.results;
+        this.pagination = {
+          currentPage: data.currentPage!,
+          hasNextPage: data.hasNextPage!,
+          hasPreviousPage: data.hasPreviousPage!,
+          pages: data.pages!
+        }
       },
-      error => {
-        console.error('Error fetching data:', error);
-      })
+      error: (error) => {
+        console.error('Error refreshing employee list:', error);
+      }
+    });
+  }
+  onPageChange(page: number) {
+    this.onRefresh(page);
+  }
+
+  onRefresh(page: number = 0) {
+    this.employeService.getAll(page).subscribe({
+      next: (data: RequestResponse) => {
+        this.list = data.results;
+        this.pagination = {
+          currentPage: data.currentPage!,
+          hasNextPage: data.hasNextPage!,
+          hasPreviousPage: data.hasPreviousPage!,
+          pages: data.pages!
+        }
+      },
+      error: (error) => {
+        console.error('Error refreshing employee list:', error);
+      }
+    });
   }
 }

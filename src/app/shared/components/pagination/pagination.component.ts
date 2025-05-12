@@ -1,23 +1,25 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Pagination } from '../../models/pagination.model';
 
 
 @Component({
   selector: 'app-pagination',
-  imports: [NgClass],
+  imports: [NgClass, NgIf],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css'
 })
 export class PaginationComponent {
-  currentPage: any;
+
+  @Input({ required: true }) pagination?: Pagination;
+
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
   onNextPage() {
-    throw new Error('Method not implemented.');
+    this.onPageChange.emit(this.pagination?.currentPage! + 1);
   }
   onPreviousPage() {
-    throw new Error('Method not implemented.');
+    this.onPageChange.emit(this.pagination?.currentPage! - 1);
   }
-  @Input({ required: true }) pages: number[] = [];
-  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
 
   onPaginate(page: number) {
     // this.refresh(page)

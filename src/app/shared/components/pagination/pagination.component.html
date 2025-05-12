@@ -1,28 +1,28 @@
-<div class="flex justify-end mt-4">
+<div *ngIf="pagination?.pages?.length! > 1" class="flex justify-end mt-4">
   <nav aria-label="Pagination">
     <ul class="inline-flex items-center -space-x-px text-sm">
-      <li>
+      <li *ngIf="pagination?.hasPreviousPage">
         <a (click)="onPreviousPage()"
           class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
           Précédent
         </a>
       </li>
 
-      @for (p of pages; track $index) {
+      @for (p of pagination?.pages; track $index) {
 
       <li>
         <a (click)="onPaginate($index)"
           class="px-3 py-2 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-blue-700 cursor-pointer"
           [ngClass]="{
-              'bg-blue-500 text-white border-blue-500': $index === currentPage,
-              'text-gray-500 bg-white': $index !== currentPage
+              'bg-blue-500 text-white border-blue-500': $index === pagination?.currentPage,
+              'text-gray-500 bg-white': $index !== pagination?.currentPage,
             }">
           {{ $index + 1 }}
         </a>
       </li>
       }
 
-      <li>
+      <li *ngIf="pagination?.hasNextPage">
         <a (click)="onNextPage()"
           class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
           Suivant

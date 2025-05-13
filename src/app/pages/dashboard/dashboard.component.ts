@@ -29,6 +29,7 @@ export class DashboardComponent {
     this.refresh();
   }
   refresh(page: number = 0) {
+    alert(this.departementId)
     this.dashboardService.getSummary(this.departementId!, this.periodeId!,page).subscribe({
       next: (data) => {
         this.dashboard = data.results;
@@ -39,6 +40,7 @@ export class DashboardComponent {
           hasPreviousPage: data.hasPreviousPage!,
           pages: data.pages!
         }
+        console.log(this.dashboard);
       },
       error: (error) => {
         console.error('Error fetching dashboard:', error);

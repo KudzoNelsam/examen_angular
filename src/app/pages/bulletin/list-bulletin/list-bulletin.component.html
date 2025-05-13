@@ -21,7 +21,6 @@
         </button>
     </div>
 
-
     <!-- Grille d'employés -->
     <div *ngIf="list?.length! > 0">
         <app-bulletin-item [pagination]="pagination" (refresh)="refresh()" (notif)="showNotif($event)"  (onPageChange)="onPageChange($event)" [bulletins]="list"/>

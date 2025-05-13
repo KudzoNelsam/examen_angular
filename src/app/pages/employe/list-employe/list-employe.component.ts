@@ -18,8 +18,8 @@ import { Pagination } from '../../../shared/models/pagination.model';
 export class ListEmployeComponent {
   list?: ListEmploye;
   champ?: string;
-  departementId?: number;
-  statut?: string;
+  departementId: string = '';
+  statut: string = '';
   pagination?: Pagination;
 
   constructor(private readonly employeService: EmployeService) { }

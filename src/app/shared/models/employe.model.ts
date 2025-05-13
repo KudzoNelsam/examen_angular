@@ -5,6 +5,7 @@ export interface Employe {
     id: number;
     anciennete: number;
     matricule: string;
+    photo: string;
     nom: string;
     prenom: string;
     sexe: string;

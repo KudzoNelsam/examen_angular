@@ -58,11 +58,10 @@ export class EmployeDetailsComponent {
       this.showNotif("Aucune période sélectionnée ❌");
     }
   }
-
   onPageChange(page: number) {
     this.refresh(this.employe!.employe.id, page);
   }
-  refresh(id : number = this.employe!.employe.id, page: number = 0, size: number = 2) {
+  refresh(id : number = this.employe!.employe.id, page: number = 0, size: number = 3) {
     if (this.activeTab === 'bulletins') {
         this.employeService.getWithBulletins(id,page,size).subscribe({
           next: (data) => {

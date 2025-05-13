@@ -1,6 +1,9 @@
 <app-select-renumeration *ngIf="select" [employeId]="employeId" (hide)="hideSelect()" (selected)="showSaisie($event)" />
 <app-saisie-montant *ngIf="saisie" (hide)="hideSaisie()" (add)="addRemuneration($event)" />
 <div class="flex justify-between items-center mb-4">
+
+    <app-pagination [pagination]="pagination" (onPageChange)="paginate($event)" />
+    
     <button (click)="selectRemuneration()" class="ml-auto button-clair">
         <span>Ajouter</span>
     </button>
@@ -30,4 +33,3 @@
         </tbody>
     </table>
 </div>
-<app-pagination [pagination]="pagination" (onPageChange)="paginate($event)" />

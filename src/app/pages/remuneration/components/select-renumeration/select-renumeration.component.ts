@@ -2,11 +2,11 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { Remuneration } from '../../../../shared/models/remuneration.model';
 import { RemunerationService } from '../../../../shared/services/impl/remuneration.service';
 import { FormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-select-renumeration',
-  imports: [FormsModule, NgFor],
+  imports: [FormsModule, NgFor, NgIf],
   templateUrl: './select-renumeration.component.html',
   styleUrl: './select-renumeration.component.css'
 })

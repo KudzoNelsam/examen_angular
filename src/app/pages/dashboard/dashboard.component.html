@@ -1,1 +1,59 @@
-<p>dashboard works!</p>
+<app-notif *ngIf="notif" [notifContent]="notifContent" />
+<div class="p-4 space-y-4">
+    <div class="flex flex-col sm:flex-row gap-4 justify-between">
+        <h1 class="text-2xl font-bold">Tableau de bord</h1>
+        <div (ngSubmit)="onSearch()" class="grid gap-4 sm:grid-cols-3 mb-4">
+            <select name="per" (change)="onSearch()" [(ngModel)]="periodeId"
+                class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
+                @for (periode of dashboard?.periodes; track $index) {
+                    <option [ngValue]="periode.id">{{ periode.mois }}</option>
+                }
+            </select>
+            <select name="depart" (change)="onSearch()" [(ngModel)]="departementId"
+                class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
+                <option [ngValue]="undefined">Tous les départements</option>
+                @for (departement of dashboard?.departements; track $index) {
+                    <option [ngValue]="departement.id">{{ departement.nom }}</option>
+                }
+            </select>
+            <button class="button-clair">
+                <i class="ri-download-2-line"></i>
+                <span>Exporter les stats</span>
+            </button>
+            <button (click)="onSearch()" class="button sm:hidden">
+                Rechercher
+            </button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <app-dashboard-card title="Employés actifs" value="{{dashboard?.employeActif!}}" subtitle="sur {{dashboard?.employeTotal}} employés" icon="ri-group-line"/>
+        <app-dashboard-card title="Masse salariale" value="{{dashboard?.masseSalariale!}} CFA" subtitle="pour {{dashboard?.periodeSelectionee?.mois}}" icon="ri-wallet-line"/>
+        <app-dashboard-card title="Charges sociales" value="{{dashboard?.chargeSociale!}} CFA" subtitle="cotisations du mois" icon="ri-wallet-line"/>
+        <app-dashboard-card title="Bulletins générés" value="{{dashboard?.bulletinGenere!}}" subtitle="{{dashboard?.bulletinEnvoye}} envoyés par email" icon="ri-article-line"/>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- <app-dashboard-bar-chart></app-dashboard-bar-chart>
+        <app-dashboard-line-chart></app-dashboard-line-chart>
+        <app-dashboard-pie-chart></app-dashboard-pie-chart> -->
+    </div>
+<div class="bg-white text-lg justify-between rounded-2xl p-4 border shadow-md b-light flex flex-col gap-0.5">
+    <div class="flex justify-between items-center mb-2">
+        <h2 class="text-xl font-bold">Bulletins</h2>
+    </div>
+    <div *ngIf="dashboard?.bulletins?.length! > 0">
+        <app-bulletin-item [pagination]="pagination" (refresh)="refresh()" (notif)="showNotif($event)"  (onPageChange)="onPageChange($event)" [bulletins]="dashboard?.bulletins"/>
+    </div>
+    <div *ngIf="dashboard?.bulletins?.length! == 0">
+        <p class="text-gray-500">Aucun bulletin trouvé.</p>
+    </div>
+</div>
+</div>
+
+<!-- composants à créer :
+- dashboard-filters
+- dashboard-card (avec [type] en @Input)
+- dashboard-bar-chart
+- dashboard-line-chart
+- dashboard-pie-chart -->

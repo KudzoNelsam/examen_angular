@@ -31,7 +31,7 @@ export class EmployeService extends GenericService implements IEmployeService {
   getWithBulletins(id: number, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/bulletins?size=${size}&page=${page}`);
   }
-  filter(champ?: string, statut?: string, departementId?: string, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
+  filter(champ?: string, statut?: string, departementId?: number, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}${champ ? '&champ=' + champ : ''}${statut ? '&statut=' + statut : ''}${departementId ? '&departementId=' + departementId : ''}`);
   }
 

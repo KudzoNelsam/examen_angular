@@ -14,16 +14,16 @@
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto" />
         <select name="depart" (change)="onSearch()" [(ngModel)]="departementId"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
-            <option ngValue="">Tous les départements</option>
+            <option [ngValue]="undefined">Tous les départements</option>
             @for (departement of list?.departements; track $index) {
-            <option ngValue="{{ departement.id }}">{{ departement.nom }}</option>
+            <option [ngValue]="departement.id">{{ departement.nom }}</option>
             }
         </select>
         <select name="stat" (change)="onSearch()" [(ngModel)]="statut"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto">
-            <option ngValue="">Tous les statuts</option>
+            <option [ngValue]="undefined">Tous les statuts</option>
             @for (statut of list?.statuts; track $index) {
-            <option ngValue="{{ statut }}">{{ statut }}</option>
+            <option [ngValue]="statut">{{ statut }}</option>
             }
         </select>
 

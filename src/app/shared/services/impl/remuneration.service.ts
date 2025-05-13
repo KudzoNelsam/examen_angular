@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
-import { IRemunerationService } from '../RemunerationService';
+import { IRemunerationService } from '../IRemunerationService';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RequestResponse } from '../../models/request.response.model';

@@ -2,17 +2,25 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Bulletin } from '../../../../shared/models/bulletin.model';
 import { NgFor, NgIf } from '@angular/common';
 import { BulletinService } from '../../../../shared/services/impl/bulletin.service';
+import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
+import { Pagination } from '../../../../shared/models/pagination.model';
 
 @Component({
   selector: 'app-bulletin-item',
-  imports: [NgIf, NgFor],
+  imports: [NgIf, NgFor, PaginationComponent],
   templateUrl: './bulletin-item.component.html',
   styleUrl: './bulletin-item.component.css'
 })
 export class BulletinItemComponent {
-  @Input() bulletins?: Bulletin[];
+  @Input({required : true}) bulletins?: Bulletin[];
+  @Input({required : true}) pagination?: Pagination;
   @Output() notif = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<void>();
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
+
+  paginate(page: number) {
+    this.onPageChange.emit(page);
+  }
 
   constructor(private bulletinService : BulletinService) { }
 

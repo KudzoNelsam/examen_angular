@@ -7,18 +7,28 @@ import { SelectRenumerationComponent } from "../select-renumeration/select-renum
 import { SaisieMontantComponent } from "../saisie-montant/saisie-montant.component";
 import { NotifComponent } from "../../../../shared/components/notif/notif.component";
 import { EmployeRemunerationRequest } from '../../../../shared/models/requests/employe.remuneration.model';
+import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
+import { Pagination } from '../../../../shared/models/pagination.model';
 
 @Component({
   selector: 'app-remuneration-item',
-  imports: [NgFor, NgIf, SelectRenumerationComponent, SaisieMontantComponent],
+  imports: [NgFor, NgIf, SelectRenumerationComponent, SaisieMontantComponent, PaginationComponent],
   templateUrl: './remuneration-item.component.html',
   styleUrl: './remuneration-item.component.css'
 })
 export class RemunerationItemComponent {
   @Input({required : true}) remunerations?: EmployeRemuneration[];
-  @Input({required : true}) employeId?: number;
+  @Input({required : true}) employeId?: number; 
+  @Input({required : true}) pagination?: Pagination;
+
   @Output() notif = new EventEmitter<string>();
   @Output() refresh = new EventEmitter<void>();
+  @Output() onPageChange: EventEmitter<number> = new EventEmitter<number>();
+
+  paginate(page: number) {
+    this.onPageChange.emit(page);
+  }
+  
   saisie: boolean = false;
   select: boolean = false;
   selectedRemuneration?: Remuneration;

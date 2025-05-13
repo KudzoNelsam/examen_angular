@@ -22,14 +22,14 @@ export class EmployeService extends GenericService implements IEmployeService {
   generateBulletin(id: number, periode: number): Observable<RequestResponse> {
     return this.http.post<RequestResponse>(`${this.baseUrl}/${id}/bulletin?periodeId=${periode}`,null);
   }
-  getWithDatas(id: number): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/datas`);
+  getWithDatas(id: number, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/datas?size=${size}&page=${page}`);
   }
-  getWithRemunerations(id: number): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/remunerations`);
+  getWithRemunerations(id: number, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/remunerations?size=${size}&page=${page}`);
   }
-  getWithBulletins(id: number): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/bulletins`);
+  getWithBulletins(id: number, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}/${id}/bulletins?size=${size}&page=${page}`);
   }
   filter(champ?: string, statut?: string, departementId?: number, page: number = this.page, size: number = this.size): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}?size=${size}&page=${page}${champ ? '&champ=' + champ : ''}${statut ? '&statut=' + statut : ''}${departementId ? '&departementId=' + departementId : ''}`);

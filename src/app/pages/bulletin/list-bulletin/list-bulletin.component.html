@@ -24,11 +24,7 @@
 
     <!-- Grille d'employés -->
     <div *ngIf="list?.length! > 0">
-        <app-bulletin-item (refresh)="refresh()" (notif)="showNotif($event)" [bulletins]="list"/>
-        <!-- Pagination -->
-        <div class="flex justify-end my-4">
-            <app-pagination [pagination]="pagination" (onPageChange)="onPageChange($event)" />
-        </div>
+        <app-bulletin-item [pagination]="pagination" (refresh)="refresh()" (notif)="showNotif($event)"  (onPageChange)="onPageChange($event)" [bulletins]="list"/>
     </div>
     <!-- Aucune donnée -->
 </div>

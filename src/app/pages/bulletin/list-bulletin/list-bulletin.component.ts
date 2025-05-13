@@ -5,7 +5,6 @@ import { BulletinService } from '../../../shared/services/impl/bulletin.service'
 import { Bulletin } from '../../../shared/models/bulletin.model';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { PaginationComponent } from "../../../shared/components/pagination/pagination.component";
 import { BulletinItemComponent } from "../components/bulletin-item/bulletin-item.component";
 import { NotifComponent } from "../../../shared/components/notif/notif.component";
 import { EmployeService } from '../../../shared/services/impl/employe.service';
@@ -14,7 +13,7 @@ import { PeriodeBulletinResponse } from '../../../shared/models/layout.model';
 
 @Component({
   selector: 'app-list-bulletin',
-  imports: [FormsModule, NgIf, PaginationComponent, BulletinItemComponent, NotifComponent, PopupComponent],
+  imports: [FormsModule, NgIf, BulletinItemComponent, NotifComponent, PopupComponent],
   templateUrl: './list-bulletin.component.html',
   styleUrl: './list-bulletin.component.css'
 })

@@ -31,8 +31,8 @@ export interface EmployeWithRemunerations {
 
 export interface EmployeWithDatas {
     employe: Employe;
-    bulletins: Bulletin[];
-    remunerations: EmployeRemuneration[];
+    bulletins?: Bulletin[];
+    remunerations?: EmployeRemuneration[];
 }
     
 

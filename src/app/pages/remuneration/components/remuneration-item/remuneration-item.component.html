@@ -30,6 +30,4 @@
         </tbody>
     </table>
 </div>
-<div *ngIf="remunerations?.length! == 0" class="flex justify-center items-center h-fit">
-    <p class="text-gray-500">Aucune rémunérations trouvé.</p>
-</div>
+<app-pagination [pagination]="pagination" (onPageChange)="paginate($event)" />

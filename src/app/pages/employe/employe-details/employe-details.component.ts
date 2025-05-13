@@ -9,6 +9,7 @@ import { BulletinItemComponent } from "../../bulletin/components/bulletin-item/b
 import { RemunerationItemComponent } from "../../remuneration/components/remuneration-item/remuneration-item.component";
 import { NotifComponent } from "../../../shared/components/notif/notif.component";
 import { PopupComponent } from "../../bulletin/components/popup/popup.component";
+import { Pagination } from '../../../shared/models/pagination.model';
 
 @Component({
   selector: 'app-employe-details',
@@ -23,6 +24,8 @@ export class EmployeDetailsComponent {
   routes = ROUTES
   activeTab: string = 'bulletins';
   employe? : EmployeWithDatas;
+  pagination?: Pagination;
+
 
   constructor(private employeService : EmployeService, private activatedRoute : ActivatedRoute) {}
 
@@ -56,15 +59,41 @@ export class EmployeDetailsComponent {
     }
   }
 
-  refresh(id : number = this.employe!.employe.id) {
-    this.employeService.getWithDatas(id).subscribe({
-      next: (data) => {
-        this.employe = data.results;
-      },
-      error: (error) => {
-        console.error('Error refreshing employee details:', error);
-      }
-    });
+  onPageChange(page: number) {
+    this.refresh(this.employe!.employe.id, page);
+  }
+  refresh(id : number = this.employe!.employe.id, page: number = 0, size: number = 2) {
+    if (this.activeTab === 'bulletins') {
+        this.employeService.getWithBulletins(id,page,size).subscribe({
+          next: (data) => {
+            this.employe = data.results;
+            this.pagination = {
+              currentPage: data.currentPage!,
+              hasNextPage: data.hasNextPage!,
+              hasPreviousPage: data.hasPreviousPage!,
+              pages: data.pages!
+            }
+          },
+          error: (error) => {
+            console.error('Error refreshing employee details:', error);
+          }
+        });
+    }else{
+      this.employeService.getWithRemunerations(id,page,size).subscribe({
+        next: (data) => {
+          this.employe = data.results;
+          this.pagination = {
+            currentPage: data.currentPage!,
+            hasNextPage: data.hasNextPage!,
+            hasPreviousPage: data.hasPreviousPage!,
+            pages: data.pages!
+          }
+        },
+        error: (error) => {
+          console.error('Error refreshing employee details:', error);
+        }
+      });
+    }
   }
 
   switchTab(tab: string) {

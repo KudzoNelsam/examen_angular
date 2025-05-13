@@ -22,7 +22,6 @@ export class PaginationComponent {
   }
 
   onPaginate(page: number) {
-    // this.refresh(page)
     this.onPageChange.emit(page);
   }
 }

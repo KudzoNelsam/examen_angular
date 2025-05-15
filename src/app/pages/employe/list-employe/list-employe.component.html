@@ -8,7 +8,7 @@
     </div>
 
     <!-- Filtres -->
-    <div (ngSubmit)="onSearch()" class="grid gap-4 md:grid-cols-3 mb-4 mt-4">
+    <div (ngSubmit)="onSearch()" class="grid gap-4 sm:grid-cols-3 mb-4 mt-4">
         <input (input)="onSearch()" [(ngModel)]="champ" name="nom" type="text"
             placeholder="Rechercher par nom, email ou poste…"
             class="border border-[#aaadb1] rounded-lg p-2 w-full sm:w-auto" />
@@ -36,7 +36,7 @@
 
     <!-- Grille d'employés -->
     <div *ngIf="list?.employes?.length! > 0">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 mt-4">
             <app-employee-card *ngFor="let emp of list?.employes" [employe]="emp"></app-employee-card>
         </div>
         <!-- Pagination -->

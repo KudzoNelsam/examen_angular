@@ -26,14 +26,14 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <app-dashboard-card title="Employés actifs" value="{{dashboard?.employeActif!}}" subtitle="sur {{dashboard?.employeTotal}} employés" icon="ri-group-line"/>
         <app-dashboard-card title="Masse salariale" value="{{dashboard?.masseSalariale!}} CFA" subtitle="pour {{dashboard?.periodeSelectionee?.mois}}" icon="ri-wallet-line"/>
         <app-dashboard-card title="Charges sociales" value="{{dashboard?.chargeSociale!}} CFA" subtitle="cotisations du mois" icon="ri-wallet-line"/>
         <app-dashboard-card title="Bulletins générés" value="{{dashboard?.bulletinGenere!}}" subtitle="{{dashboard?.bulletinEnvoye}} envoyés par email" icon="ri-article-line"/>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- <app-dashboard-bar-chart></app-dashboard-bar-chart>
         <app-dashboard-line-chart></app-dashboard-line-chart>
         <app-dashboard-pie-chart></app-dashboard-pie-chart> -->

@@ -24,7 +24,7 @@ export class DashboardGraphComponent {
       data: {
         labels: this.dashboard?.masseSalariales.map(m => m.periode.mois),
         datasets: [{
-          label: '',
+          label: 'Masse salariale',
           data: this.dashboard?.masseSalariales.map(m => m.montant),
           backgroundColor: '#a259ff'
         }]
@@ -48,7 +48,7 @@ export class DashboardGraphComponent {
       data: {
         labels: this.dashboard?.chargeSociales.map(p => p.periode.mois),
         datasets: [{
-          label: '',
+          label: 'Charges sociales',
           data: this.dashboard?.chargeSociales.map(c => c.montant),
           borderColor: '#00aaff',
           backgroundColor: '#00aaff44',

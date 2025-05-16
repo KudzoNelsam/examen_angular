@@ -7,10 +7,11 @@ import { BulletinItemComponent } from "../bulletin/components/bulletin-item/bull
 import { Pagination } from '../../shared/models/pagination.model';
 import { NgIf } from '@angular/common';
 import { NotifComponent } from "../../shared/components/notif/notif.component";
+import { DashboardGraphComponent } from "./dashboard-graph/dashboard-graph.component";
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DashboardCardComponent, FormsModule, BulletinItemComponent, NgIf, NotifComponent],
+  imports: [DashboardCardComponent, FormsModule, BulletinItemComponent, NgIf, NotifComponent, DashboardGraphComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

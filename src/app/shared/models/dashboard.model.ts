@@ -13,7 +13,6 @@ export interface Dashboard {
     masseSalariale : number;
     chargeSociale : number;
     periodeSelectionee : PeriodeBulletinResponse;
-    departement : Departement;
     periodes : PeriodeBulletinResponse [];
     departements : Departement[];
     masseSalariales : MasseSalariale [];

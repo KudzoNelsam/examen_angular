@@ -3,7 +3,8 @@ export const PATHS = {
     DASHBOARD: 'home',
     EMPLOYE: {
         LIST: 'employes',
-        DETAIL: 'employes/detail/:id'
+        DETAIL: 'employes/detail/:id',
+        ADD: 'employes/add',
     },
     DEPARTEMENT: {
         LIST: 'departements',
@@ -22,6 +23,7 @@ export const ROUTES = {
     EMPLOYE: {
         LIST: `/${PATHS.EMPLOYE.LIST}`,
         DETAIL: (id: number) => `/${PATHS.EMPLOYE.LIST}/detail/${id}`,
+        ADD: `/${PATHS.EMPLOYE.ADD}`,
     },
     DEPARTEMENT: {
         LIST: `/${PATHS.DEPARTEMENT.LIST}`,

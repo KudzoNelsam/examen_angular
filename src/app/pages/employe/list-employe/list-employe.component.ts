@@ -7,6 +7,9 @@ import { ListEmploye } from '../../../shared/models/list.employe.model';
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
 import { Pagination } from '../../../shared/models/pagination.model';
+import { Router } from '@angular/router';
+import { ROUTES } from '../../../routing/app.paths';
+
 
 
 @Component({
@@ -22,7 +25,7 @@ export class ListEmployeComponent {
   statut?: string;
   pagination?: Pagination;
 
-  constructor(private readonly employeService: EmployeService) { }
+  constructor(private readonly employeService: EmployeService, private readonly router: Router) { }
 
   ngOnInit(): void {
     this.refresh();
@@ -49,5 +52,9 @@ export class ListEmployeComponent {
         console.error('Error refreshing employee list:', error);
       }
     });
+  }
+
+  onAdd() {
+    this.router.navigateByUrl(ROUTES.EMPLOYE.ADD)
   }
 }

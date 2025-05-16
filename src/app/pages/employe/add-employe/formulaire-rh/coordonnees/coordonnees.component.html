@@ -1,0 +1,82 @@
+<div class="space-y-4">
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Adresse</label>
+            <input type="text" formControlName="adresse"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Complément d'adresse</label>
+            <input type="text" formControlName="complementAdresse"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/3">
+            <label for="" class="block mb-1">Code postal</label>
+            <input type="text" formControlName="codePostal"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-2/3">
+            <label for="" class="block mb-1">Ville</label>
+            <input type="text" formControlName="ville"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Région</label>
+            <select formControlName="region"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="" disabled selected>Sélectionner une région</option>
+                <option>Dakar</option>
+                <option>Thiès</option>
+                <option>Saint-Louis</option>
+                <option>Kaolack</option>
+                <option>Tambacounda</option>
+                <option>Ziguinchor</option>
+                <option>Fatick</option>
+                <option>Kédougou</option>
+            </select>
+        </div>
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Pays</label>
+            <select formControlName="pays"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="Sénégal">Sénégal</option>
+                <option value="Mali">Mali</option>
+                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                <option value="Guinée">Guinée</option>
+                <option value="Autre">Autre</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Téléphone principal</label>
+            <input type="tel" formControlName="telephone" placeholder="+221..."
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Téléphone secondaire</label>
+            <input type="tel" formControlName="telephone2" placeholder="+221..."
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Email professionnel</label>
+            <input type="email" formControlName="emailPro"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Email personnel</label>
+            <input type="email" formControlName="emailPerso"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="space-y-4">
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="matricule" class="block mb-1">Matricule</label>
+            <input type="text" formControlName="matricule"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/4">
+            <label for="badge" class="block mb-1">Badge</label>
+            <input type="text" formControlName="badge"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/4">
+            <label for="codeConf" class="block mb-1">Code Conf.</label>
+            <select formControlName="codeConf"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/3">
+            <label for="civilite" class="block mb-1">Civilité</label>
+            <select formControlName="civilite"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option>Monsieur</option>
+                <option>Madame</option>
+            </select>
+        </div>
+        <div class="w-2/3">
+            <label for="nom" class="block mb-1">Nom</label>
+            <input type="text" formControlName="nom"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+    </div>
+
+    <div>
+        <label for="nomFamille" class="block mb-1">Nom de famille</label>
+        <input type="text" formControlName="nomFamille"
+            class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="flex gap-2">
+        <div class="w-1/3">
+            <label for="" class="block mb-1">Prénom 1</label>
+            <input type="text" formControlName="prenom1"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/3">
+            <label for="" class="block mb-1">Prénom 2</label>
+            <input type="text" formControlName="prenom2"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/3">
+            <label for="" class="block mb-1">Prénom 3</label>
+            <input type="text" formControlName="prenom3"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Situation familiale</label>
+            <select formControlName="situationFamiliale"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option>Célibataire</option>
+                <option>Marié(e)</option>
+                <option>Divorcé(e)</option>
+                <option>Veuf(ve)</option>
+            </select>
+        </div>
+        <div class="w-1/4">
+            <label for="" class="block mb-1">Nombre d'enfants</label>
+            <input type="number" formControlName="nombreEnfants"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/4 flex items-center gap-2 mt-6">
+            <input type="checkbox" formControlName="nonReconnu" />
+            <label for="">Non reconnu</label>
+        </div>
+    </div>
+
+    <div class="flex gap-4">
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Date de naissance</label>
+            <input type="date" formControlName="dateNaissance"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="w-1/2">
+            <label for="" class="block mb-1">Type de date</label>
+            <select formControlName="dateNaissanceType"
+                class="w-full p-2 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="0">Date connue</option>
+                <option value="1">Date inconnue</option>
+            </select>
+        </div>
+    </div>
+</div>

@@ -4,8 +4,8 @@ import { ListEmployeComponent } from './pages/employe/list-employe/list-employe.
 import { PATHS } from './routing/app.paths';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EmployeDetailsComponent } from './pages/employe/employe-details/employe-details.component';
-import { BulletinComponent } from './pages/bulletin/bulletin.component';
 import { ListBulletinComponent } from './pages/bulletin/list-bulletin/list-bulletin.component';
+import { AddEmployeComponent } from './pages/employe/add-employe/add-employe.component';
 
 export const routes: Routes = [
     {
@@ -15,6 +15,10 @@ export const routes: Routes = [
             {
                 path: PATHS.EMPLOYE.LIST,
                 component: ListEmployeComponent
+            },
+            {
+                path: PATHS.EMPLOYE.ADD,
+                component: AddEmployeComponent
             },
             {
                 path: PATHS.DASHBOARD,

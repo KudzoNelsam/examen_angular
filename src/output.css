@@ -929,6 +929,11 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
+  .\32 xl\:grid-cols-4 {
+    @media (width >= 96rem) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
   .\32 xl\:grid-cols-5 {
     @media (width >= 96rem) {
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -986,7 +991,6 @@ input:focus, select:focus {
   color: black;
   font-weight: 400;
   font-size: large;
-  width: fit-content;
 }
 .button > *, .button-clair > * {
   margin: 0 5px;

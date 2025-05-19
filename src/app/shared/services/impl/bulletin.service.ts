@@ -23,9 +23,16 @@ export class BulletinService extends GenericService implements IBulletinService 
   download(bulletinId: number): Observable<Blob> {
     return this.http.get(`${this.baseUrl}/${bulletinId}/pdf`, { responseType: 'blob' });
   }
+  
+  downloadAll(periode: number, departementId? : number): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/pdf?periodeId=${periode}${departementId ? '&departementId=' + departementId : ''}`, { responseType: 'blob' });
+  }
 
   sendMail(bulletinId: number): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${this.apiUrl}/mails/${bulletinId}/bulletin`);
+    return this.http.get<RequestResponse>(`${this.baseUrl}/${bulletinId}/mail`);
+  }
+  sendAllMail(periode: number, departementId? : number): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${this.baseUrl}/mail?periodeId=${periode}${departementId ? '&departementId=' + departementId : ''}`);
   }
 
 }

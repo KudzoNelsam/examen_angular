@@ -8,5 +8,5 @@ export interface IEmployeService extends IGenericService {
     getWithRemunerations(id: number): Observable<RequestResponse>;
     getWithDatas(id: number): Observable<RequestResponse>;
     generateBulletin(id: number, periode: number): Observable<RequestResponse>;
-    generateAll(periode: number): Observable<RequestResponse>;
+    generateAll(periode: number, departementId : number): Observable<RequestResponse>;
 }

@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 import { Chart , registerables } from 'chart.js';
 import { Dashboard } from '../../../shared/models/dashboard.model';
@@ -12,11 +12,24 @@ Chart.register(...registerables);
 })
 export class DashboardGraphComponent {
   @Input({required : true}) dashboard! : Dashboard
+  @Output() generate = new EventEmitter<void>();
+  @Output() send = new EventEmitter<void>();
+  @Output() download: EventEmitter<void> = new EventEmitter<void>();
   barChart!: Chart;
   lineChart!: Chart;
   pieChart!: Chart;
 
   constructor() {}
+
+  generateBulletin() {
+    this.generate.emit();
+  }
+  sendBulletin() {
+    this.send.emit();
+  }
+  downloadBulletin() {
+    this.download.emit();
+  }
 
   createBarChart() {
     this.barChart = new Chart("barChart", {

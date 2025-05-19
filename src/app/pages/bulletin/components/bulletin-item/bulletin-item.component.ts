@@ -39,7 +39,7 @@ export class BulletinItemComponent {
   }
 
   sendMail(idBulletin: number) {
-    this.notif.emit("Bulletin en cours d'envoi ...");
+    this.notif.emit("Bulletin en cours d'envoi...");
     this.bulletinService.sendMail(idBulletin).subscribe({
       next: (response) => {
         this.notif.emit("Bulletin envoyé avec succès ✔");
@@ -51,7 +51,7 @@ export class BulletinItemComponent {
     });
   }
   download(bulletin: Bulletin) {
-    this.notif.emit("Bulletin en cours de téléchargement ...");
+    this.notif.emit("Bulletin en cours de téléchargement...");
     this.bulletinService.download(bulletin.id).subscribe({
       next: (data) => {
         const blob = new Blob([data], { type: 'application/pdf' });

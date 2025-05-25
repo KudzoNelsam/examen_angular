@@ -32,9 +32,9 @@ export class MenuService implements IMenuService {
     {
       label: 'Départements',
       icon: "ri-settings-2-line",
-      isVisible: true,
       routerLink: ROUTES.DEPARTEMENT.LIST,
-      routerLinkActive: "selected"
+      routerLinkActive: "selected",
+      isVisible: true
     }
   ];
 

@@ -1,21 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DepartementService } from '../../shared/services/impl/departement.service';
 
 @Component({
   selector: 'app-departement',
-  imports: [FormsModule, CommonModule,],
+  imports: [FormsModule, CommonModule],
   templateUrl: './departement.component.html',
   styleUrl: './departement.component.css'
 })
-export class DepartementComponent {
-  departements: Departement[] = [
-    { id: 1, nom: 'Informatique', employes: [{ id: 1, nom: 'Jean' }] },
-    { id: 2, nom: 'RH', employes: [] }
-  ];
+export class DepartementComponent implements OnInit {
+  departements: Departement[] = [];
   departement: Departement = this.initDepartement();
   editing: boolean = false;
-  private nextId = 3;
+
+  constructor(private readonly depService: DepartementService) { }
+
+  ngOnInit(): void {
+    this.loadDepartements();
+  }
+
+  loadDepartements() {
+    this.depService.getAll().subscribe({
+      next: (data) => {
+        this.departements = (data.results ?? []).reverse(); // Si tu veux la liste renversée
+      },
+      error: (er) => console.log(er),
+    });
+  }
 
   editDepartement(dep: Departement) {
     this.editing = true;
@@ -23,26 +35,38 @@ export class DepartementComponent {
   }
 
   saveDepartement(form: any) {
-    if (!this.departement.nom?.trim()) {
-      // Le formulaire va afficher l'erreur grâce à depForm.submitted
-      return;
-    }
-    if (this.editing) {
-      const idx = this.departements.findIndex(d => d.id === this.departement.id);
-      if (idx > -1) this.departements[idx].nom = this.departement.nom;
+    if (!this.departement.nom?.trim()) return;
+
+    if (this.editing && this.departement.id) {
+      // Edition : appel API update
+      this.depService.update(this.departement.id, this.departement).subscribe({
+        next: () => {
+          this.loadDepartements();
+          this.resetForm(form);
+        },
+        error: (err) => console.log(err)
+      });
     } else {
-      this.departement.id = this.nextId++;
-      this.departements.push({ ...this.departement, employes: [] });
+      // Création : appel API create
+      this.depService.create(this.departement).subscribe({
+        next: () => {
+          this.loadDepartements();
+          this.resetForm(form);
+        },
+        error: (err) => console.log(err)
+      });
     }
-    this.departement = this.initDepartement();
-    this.editing = false;
-    form.resetForm();
   }
 
   deleteDepartement(id: number) {
     if (confirm('Supprimer ce département ?')) {
-      this.departements = this.departements.filter(dep => dep.id !== id);
-      this.cancelEdit();
+      this.depService.delete(id).subscribe({
+        next: () => {
+          this.loadDepartements();
+          this.cancelEdit();
+        },
+        error: (err) => console.log(err)
+      });
     }
   }
 
@@ -51,12 +75,16 @@ export class DepartementComponent {
     this.departement = this.initDepartement();
   }
 
+  private resetForm(form: any) {
+    this.departement = this.initDepartement();
+    this.editing = false;
+    form.resetForm();
+  }
+
   private initDepartement(): Departement {
     return { id: 0, nom: '', employes: [] };
   }
-
 }
-
 
 interface Employe {
   id: number;

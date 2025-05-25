@@ -14,6 +14,7 @@ export const PATHS = {
         LIST: 'bulletins',
         DETAIL: 'bulletins/detail/:id'
     },
+
     NOT_FOUND: '**'
 }
 

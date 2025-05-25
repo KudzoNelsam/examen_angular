@@ -14,7 +14,7 @@ export class MenuService implements IMenuService {
       routerLink: ROUTES.DASHBOARD,
       isVisible: true
     },
-    
+
     {
       label: 'Employés',
       icon: 'ri-group-line',
@@ -28,6 +28,13 @@ export class MenuService implements IMenuService {
       routerLinkActive: 'selected',
       routerLink: ROUTES.BULLETIN.LIST,
       isVisible: true
+    },
+    {
+      label: 'Départements',
+      icon: "ri-settings-2-line",
+      isVisible: true,
+      routerLink: ROUTES.DEPARTEMENT.LIST,
+      routerLinkActive: "selected"
     }
   ];
 

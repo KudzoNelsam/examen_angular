@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { EmployeDetailsComponent } from './pages/employe/employe-details/employe-details.component';
 import { ListBulletinComponent } from './pages/bulletin/list-bulletin/list-bulletin.component';
 import { AddEmployeComponent } from './pages/employe/add-employe/add-employe.component';
+import { DepartementComponent } from './pages/dashboard/departement/departement.component';
 
 export const routes: Routes = [
     {
@@ -31,6 +32,10 @@ export const routes: Routes = [
             {
                 path: PATHS.BULLETIN.LIST,
                 component: ListBulletinComponent
+            },
+            {
+                path: PATHS.DEPARTEMENT.LIST,
+                component: DepartementComponent,
             },
             {
                 path: '',

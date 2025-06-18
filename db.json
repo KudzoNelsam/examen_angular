@@ -29,7 +29,7 @@
     {
       "id": "a1",
       "libelle": "Ordinateur portable Dell",
-      "qteStock": 15,
+      "qteStock": 16,
       "prixVente": 899.99
     },
     {
@@ -71,115 +71,97 @@
   ],
   "dettes": [
     {
-      "id": "d1",
-      "date": "2024-01-15",
-      "montantDette": 1015.97,
-      "montantPaye": 500,
-      "montantRestant": 515.97,
-      "clientId": "c1"
-    },
-    {
-      "id": "d2",
-      "date": "2024-02-10",
-      "montantDette": 329.98,
-      "montantPaye": 100,
-      "montantRestant": 229.98,
-      "clientId": "c2"
-    },
-    {
-      "id": "d3",
-      "date": "2024-03-05",
-      "montantDette": 169.98,
-      "montantPaye": 0,
-      "montantRestant": 169.98,
-      "clientId": "c1"
-    },
-    {
-      "id": "d175027694616130",
-      "clientId": "c1",
+      "id": "d1750277184807911",
+      "clientId": "c1750275101632467",
       "date": "2025-06-18",
-      "montantDette": 5543.900000000001,
-      "montantPaye": 0,
-      "montantRestant": 5543.900000000001
+      "montantDette": 1799.98,
+      "montantPaye": 1799.98,
+      "montantRestant": 0
     }
   ],
   "lignes": [
     {
       "id": "l1",
       "qteCom": 1,
-      "detteId": "d1",
+      "detteId": null,
       "articleId": "a1"
     },
     {
       "id": "l2",
       "qteCom": 2,
-      "detteId": "d1",
+      "detteId": null,
       "articleId": "a2"
     },
     {
       "id": "l3",
       "qteCom": 1,
-      "detteId": "d1",
+      "detteId": null,
       "articleId": "a3"
     },
     {
       "id": "l4",
       "qteCom": 1,
-      "detteId": "d2",
+      "detteId": null,
       "articleId": "a4"
     },
     {
       "id": "l5",
       "qteCom": 1,
-      "detteId": "d2",
+      "detteId": null,
       "articleId": "a3"
     },
     {
       "id": "l6",
       "qteCom": 2,
-      "detteId": "d3",
+      "detteId": null,
       "articleId": "a2"
     },
     {
       "id": "l7",
       "qteCom": 1,
-      "detteId": "d3",
+      "detteId": null,
       "articleId": "a6"
     },
     {
       "id": "l1750276946714489",
-      "detteId": "d175027694616130",
+      "detteId": null,
       "articleId": "a1",
       "qteCom": 6
     },
     {
       "id": "l1750276946714694",
-      "detteId": "d175027694616130",
+      "detteId": null,
       "articleId": "a2",
       "qteCom": 4
+    },
+    {
+      "id": "l1750277185329193",
+      "detteId": "d1750277184807911",
+      "articleId": "a1",
+      "qteCom": 2
     }
   ],
   "paiements": [
     {
-      "id": "p1",
-      "date": "2024-01-20",
-      "montant": 200,
+      "id": "b42b",
+      "date": "2025-06-18",
+      "montant": 4427.93,
       "clientId": "c1",
-      "detteId": "d1"
+      "detteId": null
     },
     {
-      "id": "p2",
-      "date": "2024-01-25",
-      "montant": 300,
+      "id": "5cdd",
+      "date": "2025-06-18",
+      "montant": 2000,
       "clientId": "c1",
-      "detteId": "d1"
+      "detteId": null
     },
     {
-      "id": "p3",
-      "date": "2024-02-15",
-      "montant": 100,
-      "clientId": "c2",
-      "detteId": "d2"
+      "id": "6d6f",
+      "date": "2025-06-18",
+      "montant": 1799.98,
+      "clientId": "c1750275101632467",
+      "detteId": "d1750277184807911"
     }
   ]
 }

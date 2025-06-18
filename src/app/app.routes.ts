@@ -7,6 +7,7 @@ import {DettesComponent} from './pages/dettes/dettes.component';
 import {DetteFormComponent} from './pages/dettes/dette-form/dette-form.component';
 import {ArticlesComponent} from './pages/articles/articles.component';
 import {ArticleFormComponent} from './pages/articles/article-form/article-form.component';
+import {PaiementsComponent} from './pages/paiements/paiements.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,10 @@ export const routes: Routes = [
       {
         path: PATHS.ARTICLE.ADD,
         component: ArticleFormComponent
+      },
+      {
+        path: PATHS.PAIEMENT.BY_DETTE,
+        component :PaiementsComponent
       }
 
     ]

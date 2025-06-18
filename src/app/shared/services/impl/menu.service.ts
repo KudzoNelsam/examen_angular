@@ -8,34 +8,19 @@ import { ROUTES } from '../../../routing/app.paths';
 export class MenuService implements IMenuService {
   menuItems: MenuItem[] = [
     {
-      label: 'Dashboard',
-      icon: 'ri-dashboard-3-line',
-      routerLinkActive: 'selected',
-      routerLink: ROUTES.DASHBOARD,
-      isVisible: true
-    },
-
-    {
-      label: 'Employés',
+      label: 'Clients',
       icon: 'ri-group-line',
       routerLinkActive: 'selected',
-      routerLink: ROUTES.EMPLOYE.LIST,
+      routerLink: ROUTES.CLIENT.LIST,
       isVisible: true
     },
     {
-      label: 'Bulletins',
+      label: 'Dettes',
       icon: 'ri-article-line',
       routerLinkActive: 'selected',
-      routerLink: ROUTES.BULLETIN.LIST,
+      routerLink: ROUTES.DETTE.LIST,
       isVisible: true
     },
-    {
-      label: 'Départements',
-      icon: "ri-settings-2-line",
-      routerLink: ROUTES.DEPARTEMENT.LIST,
-      routerLinkActive: "selected",
-      isVisible: true
-    }
   ];
 
   constructor() { }

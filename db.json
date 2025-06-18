@@ -1,0 +1,165 @@
+{
+  "clients": [
+    {
+      "id": "c1",
+      "nom": "Jean Dupont",
+      "telephone": "0123456789",
+      "adresse": "123 Rue de la Paix, 75001 Paris"
+    },
+    {
+      "id": "c2",
+      "nom": "Marie Martin",
+      "telephone": "0987654321",
+      "adresse": "456 Avenue des Champs, 69001 Lyon"
+    },
+    {
+      "id": "c3",
+      "nom": "Pierre Durand",
+      "telephone": "0654321098",
+      "adresse": "789 Boulevard Saint-Germain, 33000 Bordeaux"
+    },
+    {
+      "id": "c1750275101632467",
+      "nom": "Nelsam",
+      "telephone": "773461882",
+      "adresse": "Dakar"
+    }
+  ],
+  "articles": [
+    {
+      "id": "a1",
+      "libelle": "Ordinateur portable Dell",
+      "qteStock": 15,
+      "prixVente": 899.99
+    },
+    {
+      "id": "a2",
+      "libelle": "Souris sans fil Logitech",
+      "qteStock": 50,
+      "prixVente": 35.99
+    },
+    {
+      "id": "a3",
+      "libelle": "Clavier mécanique",
+      "qteStock": 25,
+      "prixVente": 79.99
+    },
+    {
+      "id": "a4",
+      "libelle": "Écran 24 pouces",
+      "qteStock": 12,
+      "prixVente": 249.99
+    },
+    {
+      "id": "a5",
+      "libelle": "Webcam HD",
+      "qteStock": 30,
+      "prixVente": 59.99
+    },
+    {
+      "id": "a6",
+      "libelle": "Casque audio",
+      "qteStock": 20,
+      "prixVente": 89.99
+    },
+    {
+      "id": "a1750276262349670",
+      "libelle": "Clavier 5E",
+      "prixVente": 50,
+      "qteStock": 30
+    }
+  ],
+  "dettes": [
+    {
+      "id": "d1",
+      "date": "2024-01-15",
+      "montantDette": 1015.97,
+      "montantPaye": 500,
+      "montantRestant": 515.97,
+      "clientId": "c1"
+    },
+    {
+      "id": "d2",
+      "date": "2024-02-10",
+      "montantDette": 329.98,
+      "montantPaye": 100,
+      "montantRestant": 229.98,
+      "clientId": "c2"
+    },
+    {
+      "id": "d3",
+      "date": "2024-03-05",
+      "montantDette": 169.98,
+      "montantPaye": 0,
+      "montantRestant": 169.98,
+      "clientId": "c1"
+    }
+  ],
+  "lignes": [
+    {
+      "id": "l1",
+      "qteCom": 1,
+      "detteId": "d1",
+      "articleId": "a1"
+    },
+    {
+      "id": "l2",
+      "qteCom": 2,
+      "detteId": "d1",
+      "articleId": "a2"
+    },
+    {
+      "id": "l3",
+      "qteCom": 1,
+      "detteId": "d1",
+      "articleId": "a3"
+    },
+    {
+      "id": "l4",
+      "qteCom": 1,
+      "detteId": "d2",
+      "articleId": "a4"
+    },
+    {
+      "id": "l5",
+      "qteCom": 1,
+      "detteId": "d2",
+      "articleId": "a3"
+    },
+    {
+      "id": "l6",
+      "qteCom": 2,
+      "detteId": "d3",
+      "articleId": "a2"
+    },
+    {
+      "id": "l7",
+      "qteCom": 1,
+      "detteId": "d3",
+      "articleId": "a6"
+    }
+  ],
+  "paiements": [
+    {
+      "id": "p1",
+      "date": "2024-01-20",
+      "montant": 200,
+      "clientId": "c1",
+      "detteId": "d1"
+    },
+    {
+      "id": "p2",
+      "date": "2024-01-25",
+      "montant": 300,
+      "clientId": "c1",
+      "detteId": "d1"
+    },
+    {
+      "id": "p3",
+      "date": "2024-02-15",
+      "montant": 100,
+      "clientId": "c2",
+      "detteId": "d2"
+    }
+  ]
+}

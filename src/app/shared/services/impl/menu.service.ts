@@ -21,6 +21,13 @@ export class MenuService implements IMenuService {
       routerLink: ROUTES.DETTE.LIST,
       isVisible: true
     },
+    {
+      label: 'Articles',
+      icon: 'ri-article-line',
+      routerLinkActive: 'selected',
+      routerLink: ROUTES.ARTICLE.LIST,
+      isVisible: true
+    },
   ];
 
   constructor() { }

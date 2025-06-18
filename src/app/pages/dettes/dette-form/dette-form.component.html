@@ -1,1 +1,332 @@
-<p>dette-form works!</p>
+<div class="min-h-screen bg-gray-50 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Nouvelle Dette</h1>
+        <p class="mt-2 text-gray-600">Créez une nouvelle dette en sélectionnant des articles</p>
+      </div>
+      <button
+        (click)="goBack()"
+        class="inline-flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors duration-200">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Retour à la liste
+      </button>
+    </div>
+
+    <!-- Messages -->
+    <div class="mb-6" *ngIf="success">
+      <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          <p class="text-green-700 font-medium">{{ success }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6" *ngIf="error">
+      <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+          </svg>
+          <p class="text-red-700 font-medium">{{ error }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Section principale - Articles et formulaire -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Formulaire dette -->
+        <form [formGroup]="detteForm" class="bg-white rounded-lg shadow-sm p-6">
+          <h2 class="text-lg font-semibold text-gray-900 mb-4">Informations de la dette</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Client -->
+            <div>
+              <label for="clientId" class="block text-sm font-medium text-gray-700 mb-2">
+                Client <span class="text-red-500">*</span>
+              </label>
+              <select
+                id="clientId"
+                formControlName="clientId"
+                [class]="clientId?.invalid && clientId?.touched ?
+                  'block w-full px-3 py-3 border border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent' :
+                  'block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'">
+                <option value="">Sélectionner un client</option>
+                <option *ngFor="let client of clients" [value]="client.id">
+                  {{ client.nom }} - {{ client.telephone }}
+                </option>
+              </select>
+              <div class="mt-1 text-sm text-red-600" *ngIf="clientId?.invalid && clientId?.touched">
+                Veuillez sélectionner un client
+              </div>
+            </div>
+
+            <!-- Date -->
+            <div>
+              <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
+                Date <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="date"
+                id="date"
+                formControlName="date"
+                [class]="date?.invalid && date?.touched ?
+                  'block w-full px-3 py-3 border border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent' :
+                  'block w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'">
+              <div class="mt-1 text-sm text-red-600" *ngIf="date?.invalid && date?.touched">
+                Veuillez sélectionner une date
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Articles disponibles -->
+        <div class="bg-white rounded-lg shadow-sm">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900">Articles disponibles</h2>
+          </div>
+
+          <!-- Recherche articles -->
+          <div class="px-6 py-4 border-b border-gray-200">
+            <div class="flex gap-4">
+              <div class="flex-1">
+                <div class="relative">
+                  <input
+                    type="text"
+                    [(ngModel)]="searchArticleQuery"
+                    (keyup.enter)="searchArticles()"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Rechercher un article...">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <button
+                type="button"
+                (click)="searchArticles()"
+                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200">
+                Rechercher
+              </button>
+              <button
+                type="button"
+                (click)="clearSearchArticles()"
+                *ngIf="searchArticleQuery"
+                class="px-4 py-2 border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg transition-colors duration-200">
+                Effacer
+              </button>
+            </div>
+          </div>
+
+          <!-- Loading articles -->
+          <div class="px-6 py-8 text-center" *ngIf="loadingArticles">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <span class="mt-2 text-gray-600">Chargement des articles...</span>
+          </div>
+
+          <!-- Liste des articles -->
+          <div class="p-6" *ngIf="!loadingArticles">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div *ngFor="let article of articles; trackBy: trackByArticleId"
+                   class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
+                   [class.border-green-300]="isArticleInPanier(article)"
+                   [class.bg-green-50]="isArticleInPanier(article)">
+
+                <div class="flex justify-between items-start mb-3">
+                  <div class="flex-1">
+                    <h3 class="font-medium text-gray-900">{{ article.libelle }}</h3>
+                    <p class="text-sm text-gray-600">{{ article.prixVente | currency:'EUR':'symbol':'1.2-2' }}</p>
+                    <p class="text-xs text-gray-500">Stock: {{ article.qteStock }} unités</p>
+                  </div>
+
+                  <div *ngIf="isArticleInPanier(article)" class="text-green-600">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                </div>
+
+                <div *ngIf="isArticleInPanier(article)" class="mb-3 p-2 bg-green-100 rounded text-sm text-green-800">
+                  Dans le panier: {{ getQuantiteInPanier(article) }} unité(s)
+                </div>
+
+                <div class="flex gap-2">
+                  <input
+                    type="number"
+                    [id]="'qty-' + article.id"
+                    min="1"
+                    [max]="getQuantiteDisponible(article)"
+                    value="1"
+                    class="w-20 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                  <button
+                    type="button"
+                    (click)="ajouterAuPanier(article, +$any(document.getElementById('qty-' + article.id)).value)"
+                    [disabled]="getQuantiteDisponible(article) === 0"
+                    class="flex-1 px-3 py-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-sm rounded transition-colors duration-200">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    Ajouter
+                  </button>
+                </div>
+
+                <div *ngIf="getQuantiteDisponible(article) === 0" class="mt-2 text-xs text-red-600">
+                  Stock épuisé ou entièrement dans le panier
+                </div>
+              </div>
+            </div>
+
+            <!-- Aucun article -->
+            <div *ngIf="articles.length === 0" class="text-center py-8">
+              <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+              </svg>
+              <p class="text-gray-500 font-medium">Aucun article disponible</p>
+            </div>
+
+            <!-- Pagination articles -->
+            <div class="flex justify-between items-center mt-6" *ngIf="totalPages > 1">
+              <button
+                (click)="onArticlePageChange(currentPage - 1)"
+                [disabled]="!hasPreviousPage"
+                class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                Précédent
+              </button>
+              <span class="text-sm text-gray-600">
+                Page {{ currentPage + 1 }} sur {{ totalPages }}
+              </span>
+              <button
+                (click)="onArticlePageChange(currentPage + 1)"
+                [disabled]="!hasNextPage"
+                class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                Suivant
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panier (sidebar) -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-lg shadow-sm sticky top-8">
+          <div class="px-6 py-4 border-b border-gray-200">
+            <div class="flex justify-between items-center">
+              <h2 class="text-lg font-semibold text-gray-900">
+                Panier ({{ getNombreArticlesPanier() }})
+              </h2>
+              <button
+                *ngIf="panier.length > 0"
+                (click)="viderPanier()"
+                class="text-sm text-red-600 hover:text-red-800">
+                Vider
+              </button>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <!-- Panier vide -->
+            <div *ngIf="panier.length === 0" class="text-center py-8">
+              <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z"></path>
+              </svg>
+              <p class="text-gray-500 text-sm">Votre panier est vide</p>
+              <p class="text-gray-400 text-xs mt-1">Ajoutez des articles pour commencer</p>
+            </div>
+
+            <!-- Articles dans le panier -->
+            <div *ngIf="panier.length > 0" class="space-y-4">
+              <div *ngFor="let item of panier; trackBy: trackByPanierId"
+                   class="border border-gray-200 rounded-lg p-3">
+                <div class="flex justify-between items-start mb-2">
+                  <h4 class="font-medium text-sm text-gray-900">{{ item.article.libelle }}</h4>
+                  <button
+                    (click)="retirerDuPanier(item)"
+                    class="text-red-600 hover:text-red-800">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <button
+                      (click)="modifierQuantitePanier(item, item.quantite - 1)"
+                      class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded text-sm hover:bg-gray-50">
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      [value]="item.quantite"
+                      (change)="modifierQuantitePanier(item, +$any($event.target).value)"
+                      min="1"
+                      [max]="item.article.qteStock"
+                      class="w-12 px-1 py-1 text-xs text-center border border-gray-300 rounded focus:ring-1 focus:ring-blue-500">
+                    <button
+                      (click)="modifierQuantitePanier(item, item.quantite + 1)"
+                      [disabled]="item.quantite >= item.article.qteStock"
+                      class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded text-sm hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                      +
+                    </button>
+                  </div>
+                  <div class="text-sm font-medium text-gray-900">
+                    {{ item.sousTotal | currency:'EUR':'symbol':'1.2-2' }}
+                  </div>
+                </div>
+
+                <div class="text-xs text-gray-500 mt-1">
+                  {{ item.article.prixVente | currency:'EUR':'symbol':'1.2-2' }} × {{ item.quantite }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Total -->
+            <div *ngIf="panier.length > 0" class="mt-6 pt-4 border-t border-gray-200">
+              <div class="flex justify-between items-center mb-4">
+                <span class="text-lg font-semibold text-gray-900">Total</span>
+                <span class="text-lg font-bold text-blue-600">
+                  {{ getTotalPanier() | currency:'EUR':'symbol':'1.2-2' }}
+                </span>
+              </div>
+
+              <!-- Boutons d'action -->
+              <div class="space-y-3">
+                <button
+                  type="button"
+                  (click)="onSubmit()"
+                  [disabled]="loading || detteForm.invalid || panier.length === 0"
+                  class="w-full flex justify-center items-center px-4 py-3 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium rounded-lg transition-colors duration-200">
+                  <svg *ngIf="loading" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <svg *ngIf="!loading" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  {{ loading ? 'Création...' : 'Créer la Dette' }}
+                </button>
+
+                <button
+                  type="button"
+                  (click)="resetForm()"
+                  [disabled]="loading"
+                  class="w-full px-4 py-2 border border-gray-300 hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 font-medium rounded-lg transition-colors duration-200">
+                  Réinitialiser
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

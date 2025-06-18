@@ -93,6 +93,14 @@
       "montantPaye": 0,
       "montantRestant": 169.98,
       "clientId": "c1"
+    },
+    {
+      "id": "d175027694616130",
+      "clientId": "c1",
+      "date": "2025-06-18",
+      "montantDette": 5543.900000000001,
+      "montantPaye": 0,
+      "montantRestant": 5543.900000000001
     }
   ],
   "lignes": [
@@ -137,6 +145,18 @@
       "qteCom": 1,
       "detteId": "d3",
       "articleId": "a6"
+    },
+    {
+      "id": "l1750276946714489",
+      "detteId": "d175027694616130",
+      "articleId": "a1",
+      "qteCom": 6
+    },
+    {
+      "id": "l1750276946714694",
+      "detteId": "d175027694616130",
+      "articleId": "a2",
+      "qteCom": 4
     }
   ],
   "paiements": [

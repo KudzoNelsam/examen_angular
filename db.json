@@ -77,6 +77,22 @@
       "montantDette": 1799.98,
       "montantPaye": 1799.98,
       "montantRestant": 0
+    },
+    {
+      "id": "d175028016977855",
+      "clientId": "c2",
+      "date": "2025-06-18",
+      "montantDette": 159.98,
+      "montantPaye": 159.98,
+      "montantRestant": 0
+    },
+    {
+      "id": "d1750280538895224",
+      "clientId": "c1",
+      "date": "2025-06-18",
+      "montantDette": 1959.96,
+      "montantPaye": 100,
+      "montantRestant": 1859.96
     }
   ],
   "lignes": [
@@ -139,29 +155,54 @@
       "detteId": "d1750277184807911",
       "articleId": "a1",
       "qteCom": 2
+    },
+    {
+      "id": "l1750280169801739",
+      "detteId": "d175028016977855",
+      "articleId": "a3",
+      "qteCom": 2
+    },
+    {
+      "id": "l175028053891435",
+      "detteId": "d1750280538895224",
+      "articleId": "a3",
+      "qteCom": 2
+    },
+    {
+      "id": "l1750280538914244",
+      "detteId": "d1750280538895224",
+      "articleId": "a1",
+      "qteCom": 2
     }
   ],
   "paiements": [
-    {
-      "id": "b42b",
-      "date": "2025-06-18",
-      "montant": 4427.93,
-      "clientId": "c1",
-      "detteId": null
-    },
-    {
-      "id": "5cdd",
-      "date": "2025-06-18",
-      "montant": 2000,
-      "clientId": "c1",
-      "detteId": null
-    },
     {
       "id": "6d6f",
       "date": "2025-06-18",
       "montant": 1799.98,
       "clientId": "c1750275101632467",
       "detteId": "d1750277184807911"
+    },
+    {
+      "id": "18a7",
+      "date": "2025-06-18",
+      "montant": 150,
+      "clientId": "c2",
+      "detteId": "d175028016977855"
+    },
+    {
+      "id": "dfbe",
+      "date": "2025-06-18",
+      "montant": 9.98,
+      "clientId": "c2",
+      "detteId": "d175028016977855"
+    },
+    {
+      "id": "9857",
+      "date": "2025-06-18",
+      "montant": 100,
+      "clientId": "c1",
+      "detteId": "d1750280538895224"
     }
   ]
 }

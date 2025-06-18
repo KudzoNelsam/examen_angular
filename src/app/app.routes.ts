@@ -41,6 +41,10 @@ export const routes: Routes = [
       {
         path: PATHS.PAIEMENT.BY_DETTE,
         component :PaiementsComponent
+      },
+      {
+        path: PATHS.PAIEMENT.BY_CLIENT,
+        component :PaiementsComponent
       }
 
     ]

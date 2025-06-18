@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Client } from '../../shared/models/client_model';
-import { DetteService } from '../../shared/services/impl/dette.service';
-import { ClientService } from '../../shared/services/impl/client.service';
-import { RequestResponse } from '../../shared/models/request.response.model';
-import { ROUTES } from '../../routing/app.paths';
-import { FormsModule } from '@angular/forms';
-import { NgForOf, NgIf, CurrencyPipe, DatePipe } from '@angular/common';
-import { forkJoin } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Client} from '../../shared/models/client_model';
+import {DetteService} from '../../shared/services/impl/dette.service';
+import {ClientService} from '../../shared/services/impl/client.service';
+import {RequestResponse} from '../../shared/models/request.response.model';
+import {ROUTES} from '../../routing/app.paths';
+import {FormsModule} from '@angular/forms';
+import {NgForOf, NgIf, CurrencyPipe, DatePipe} from '@angular/common';
+import {forkJoin} from 'rxjs';
 import {Dette} from '../../shared/models/dette_model';
 
 @Component({
@@ -48,13 +48,46 @@ export class DettesComponent implements OnInit {
   constructor(
     private detteService: DetteService,
     private clientService: ClientService,
-    private router: Router
-  ) { }
-
-  ngOnInit(): void {
-    this.loadClientsAndDettes();
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
   }
 
+  ngOnInit(): void {
+    this.loading = true;
+    this.error = null;
+
+    // Charger les clients dans tous les cas
+    this.clientService.getAll().subscribe({
+      next: (response: RequestResponse) => {
+        if (response.status === 200) {
+          this.clients = response.results || [];
+          this.buildClientsMap();
+
+          // Vérifier les paramètres de requête pour clientId
+          this.route.queryParams.subscribe(params => {
+            const clientId = params['clientId'];
+            if (clientId) {
+              this.selectedClientId = clientId;
+              this.filterStatus = 'all'; // Réinitialiser le filtre de statut
+              this.isSearching = false; // Réinitialiser la recherche
+              this.loadDettes(0); // Charger les dettes avec le filtre client
+            } else {
+              this.loadDettes(0); // Charger toutes les dettes
+            }
+          });
+        } else {
+          this.error = 'Erreur lors du chargement des clients';
+          this.loading = false;
+        }
+      },
+      error: (error) => {
+        this.error = 'Erreur lors du chargement des clients';
+        this.loading = false;
+        console.error('Erreur:', error);
+      }
+    });
+  }
   loadClientsAndDettes(): void {
     this.loading = true;
     this.error = null;
@@ -109,7 +142,6 @@ export class DettesComponent implements OnInit {
 
     detteObservable.subscribe({
       next: (response: RequestResponse) => {
-        console.log('Réponse loadDettes:', response);
         if (response.status === 200) {
           this.dettes = response.results || [];
           this.updatePagination(response);
@@ -158,7 +190,6 @@ export class DettesComponent implements OnInit {
       this.isSearching = true;
 
       // Pour la recherche, on utilise getAll et on filtre côté client
-      // car json-server ne supporte pas la recherche sur des relations
       this.detteService.getAll().subscribe({
         next: (response: RequestResponse) => {
           if (response.status === 200) {

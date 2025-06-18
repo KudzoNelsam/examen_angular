@@ -5,14 +5,15 @@ import {RequestResponse} from '../../shared/models/request.response.model';
 import {ROUTES} from '../../routing/app.paths';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {NgForOf, NgIf} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-clients',
   imports: [
     FormsModule,
     NgForOf,
-    NgIf
+    NgIf,
+    NgClass
   ],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.css'
@@ -152,7 +153,8 @@ export class ClientsComponent {
   }
 
   viewClientDettes(clientId: string): void {
-    this.router.navigate([ROUTES.DETTE.BY_CLIENT(clientId)]);
+    // this.router.navigate([ROUTES.DETTE.BY_CLIENT(clientId)]);
+    this.router.navigate([ROUTES.DETTE.LIST], { queryParams: { clientId } });
   }
 
   deleteClient(client: Client): void {

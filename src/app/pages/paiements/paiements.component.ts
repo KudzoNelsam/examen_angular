@@ -21,7 +21,6 @@ import { ROUTES } from '../../routing/app.paths';
     FormsModule,
     NgIf,
     NgClass,
-    PercentPipe,
     DecimalPipe
   ],
   styleUrls: ['./paiements.component.css']
